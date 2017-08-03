@@ -17,7 +17,7 @@ import io.reactivex.Observable;
  * for retrieving a collection of all {@link Post}
  */
 public class GetPostList extends UseCase<List<Post>, Void> {
-    
+
     private final PostRepository postRepository;
 
     @Inject
