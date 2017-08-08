@@ -35,4 +35,9 @@ public class MainActivity extends BaseActivity {
   void navigateToPostList() {
     this.navigator.navigateToPostList(this);
   }
+
+  @OnClick(R.id.btn_LoadOnishi)
+  void navigateToOnishiList(){
+    this.navigator.navigateToOnishiList(this);
+  }
 }
