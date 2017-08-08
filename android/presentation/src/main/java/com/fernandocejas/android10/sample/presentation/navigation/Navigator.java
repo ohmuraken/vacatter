@@ -17,8 +17,12 @@ package com.fernandocejas.android10.sample.presentation.navigation;
 
 import android.content.Context;
 import android.content.Intent;
+
+import com.fernandocejas.android10.sample.presentation.view.activity.OnishiListActivity;
+import com.fernandocejas.android10.sample.presentation.view.activity.PostListActivity;
 import com.fernandocejas.android10.sample.presentation.view.activity.UserDetailsActivity;
 import com.fernandocejas.android10.sample.presentation.view.activity.UserListActivity;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -53,6 +57,20 @@ public class Navigator {
   public void navigateToUserDetails(Context context, int userId) {
     if (context != null) {
       Intent intentToLaunch = UserDetailsActivity.getCallingIntent(context, userId);
+      context.startActivity(intentToLaunch);
+    }
+  }
+
+  public void navigateToPostList(Context context) {
+    if (context != null) {
+      Intent intentToLaunch = PostListActivity.getCallingIntent(context);
+      context.startActivity(intentToLaunch);
+    }
+  }
+
+  public void navigateToOnishiList(Context context){
+    if(context != null){
+      Intent intentToLaunch = OnishiListActivity.getCallingIntent(context);
       context.startActivity(intentToLaunch);
     }
   }
