@@ -16,6 +16,7 @@ import com.fernandocejas.android10.sample.presentation.model.OnishiModel;
 import com.fernandocejas.android10.sample.presentation.presenter.OnishiListPresenter;
 import com.fernandocejas.android10.sample.presentation.view.OnishiListView;
 import com.fernandocejas.android10.sample.presentation.view.adapter.OnishisAdapter;
+import com.fernandocejas.android10.sample.presentation.view.adapter.OnishisLayoutManager;
 
 import java.util.Collection;
 

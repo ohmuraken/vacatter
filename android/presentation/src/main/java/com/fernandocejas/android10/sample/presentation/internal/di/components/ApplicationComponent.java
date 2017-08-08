@@ -17,7 +17,6 @@ package com.fernandocejas.android10.sample.presentation.internal.di.components;
 
 import android.content.Context;
 
-import com.fernandocejas.android10.sample.domain.executor.OnishiExecutionThread;
 import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread;
 import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
 import com.fernandocejas.android10.sample.domain.repository.OnishiRepository;
@@ -42,7 +41,6 @@ public interface ApplicationComponent {
   Context context();
   ThreadExecutor threadExecutor();
   PostExecutionThread postExecutionThread();
-  OnishiExecutionThread onishiExecutionThread();
   UserRepository userRepository();
   PostRepository postRepository();
   OnishiRepository onishiRepository();

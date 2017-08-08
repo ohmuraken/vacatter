@@ -36,6 +36,11 @@
         android:label="@string/activity_title_post_list">
     </activity>
 
+    <activity
+        android:name=".view.activity.OnishiListActivity"
+        android:label="@string/activity_title_post_list">
+    </activity>
+
 
   </application>
 

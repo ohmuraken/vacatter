@@ -8,6 +8,7 @@ import android.view.Window;
 
 import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.internal.di.HasComponent;
+import com.fernandocejas.android10.sample.presentation.internal.di.components.DaggerOnishiComponent;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.OnishiComponent;
 import com.fernandocejas.android10.sample.presentation.model.OnishiModel;
 import com.fernandocejas.android10.sample.presentation.view.fragment.OnishiListFragment;
