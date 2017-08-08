@@ -2,10 +2,12 @@ package com.fernandocejas.android10.sample.presentation.view.activity;
 
 import android.os.Bundle;
 import android.widget.Button;
+
+import com.fernandocejas.android10.sample.presentation.R;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.fernandocejas.android10.sample.presentation.R;
 
 /**
  * Main application screen. This is the app entry point.
@@ -27,5 +29,10 @@ public class MainActivity extends BaseActivity {
   @OnClick(R.id.btn_LoadData)
   void navigateToUserList() {
     this.navigator.navigateToUserList(this);
+  }
+
+  @OnClick(R.id.btn_LoadPost)
+  void navigateToPostList() {
+    this.navigator.navigateToPostList(this);
   }
 }
