@@ -20,8 +20,7 @@ import com.google.gson.annotations.SerializedName
 /**
  * User Entity used in the data layer.
  */
-data class UserEntity (
-
+data class UserEntity(
     @SerializedName("id")
     val userId: Int,
 

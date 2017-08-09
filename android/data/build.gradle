@@ -44,8 +44,8 @@ android {
     quiet true
     abortOnError false
     ignoreWarnings true
-    disable 'InvalidPackage'  // Some libraries have issues with this
-    disable 'OldTargetApi'    // Due to Robolectric that modifies the manifest when running tests
+    disable 'InvalidPackage' // Some libraries have issues with this
+    disable 'OldTargetApi' // Due to Robolectric that modifies the manifest when running tests
   }
 }
 
@@ -66,8 +66,8 @@ dependencies {
   testCompile testDependencies.assertj
   testCompile testDependencies.mockito
   testCompile testDependencies.robolectric
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+  compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
 repositories {
-    mavenCentral()
+  mavenCentral()
 }

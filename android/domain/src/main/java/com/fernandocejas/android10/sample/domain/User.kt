@@ -20,9 +20,9 @@ package com.fernandocejas.android10.sample.domain
  */
 class User(val userId: Int) {
 
-    var coverUrl: String? = null
-    var fullName: String? = null
-    var email: String? = null
-    var description: String? = null
-    var followers: Int = 0
+  var coverUrl: String? = null
+  var fullName: String? = null
+  var email: String? = null
+  var description: String? = null
+  var followers: Int = 0
 }
