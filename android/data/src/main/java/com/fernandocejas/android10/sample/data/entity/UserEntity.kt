@@ -38,4 +38,4 @@ data class UserEntity(
 
     @SerializedName("email")
     val email: String
-)//empty
+)
