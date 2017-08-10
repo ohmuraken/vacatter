@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'com.neenbedankt.android-apt'
 
 android {
@@ -35,10 +37,10 @@ android {
     quiet true
     abortOnError false
     ignoreWarnings true
-    disable 'InvalidPackage'            //Some libraries have issues with this.
-    disable 'OldTargetApi'              //Lint gives this warning but SDK 20 would be Android L Beta.
-    disable 'IconDensities'             //For testing purpose. This is safe to remove.
-    disable 'IconMissingDensityFolder'  //For testing purpose. This is safe to remove.
+    disable 'InvalidPackage' //Some libraries have issues with this.
+    disable 'OldTargetApi' //Lint gives this warning but SDK 20 would be Android L Beta.
+    disable 'IconDensities' //For testing purpose. This is safe to remove.
+    disable 'IconMissingDensityFolder' //For testing purpose. This is safe to remove.
   }
 
   signingConfigs {
@@ -65,7 +67,7 @@ dependencies {
   compile project(':domain')
   compile project(':data')
 
-  apt presentationDependencies.daggerCompiler
+  kapt presentationDependencies.daggerCompiler
   compile presentationDependencies.dagger
   compile presentationDependencies.butterKnife
   compile presentationDependencies.recyclerView
@@ -81,4 +83,8 @@ dependencies {
 
   //Development
   compile developmentDependencies.leakCanary
+  compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+}
+repositories {
+  mavenCentral()
 }
