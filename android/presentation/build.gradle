@@ -57,6 +57,7 @@ android {
       signingConfig signingConfigs.debug
     }
   }
+    buildToolsVersion '25.0.0'
 }
 
 dependencies {
@@ -84,6 +85,7 @@ dependencies {
   //Development
   compile developmentDependencies.leakCanary
   compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+  compile 'com.android.support:design:23.1.0'
 }
 repositories {
   mavenCentral()
