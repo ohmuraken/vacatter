@@ -64,6 +64,7 @@ dependencies {
   compile dataDependencies.kotlinStdlib
   compile dataDependencies.rxKotlin
 
+
   testCompile testDependencies.junit
   testCompile testDependencies.assertj
   testCompile testDependencies.mockito

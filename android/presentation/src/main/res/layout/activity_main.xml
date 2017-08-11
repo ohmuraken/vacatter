@@ -37,5 +37,18 @@
       android:layout_height="wrap_content"
       android:text="@string/btn_text_load_time_line"
   />
+  <Button
+      android:id="@+id/btn_LoadTest"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="test!" />
+
+  <Button
+      android:id="@+id/btn_LoginTwitter"
+      android:layout_width="300px"
+      android:layout_height="wrap_content"
+      android:textColor="@color/white"
+      android:background="@color/twitter"
+      android:text="login with twitter" />
 
 </LinearLayout>

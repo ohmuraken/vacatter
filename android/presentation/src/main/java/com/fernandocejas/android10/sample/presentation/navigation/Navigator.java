@@ -17,6 +17,8 @@ package com.fernandocejas.android10.sample.presentation.navigation;
 
 import android.content.Context;
 import android.content.Intent;
+
+import com.fernandocejas.android10.sample.presentation.view.activity.OauthActivity;
 import com.fernandocejas.android10.sample.presentation.view.activity.UserDetailsActivity;
 import com.fernandocejas.android10.sample.presentation.view.activity.UserListActivity;
 import javax.inject.Inject;
@@ -45,6 +47,7 @@ public class Navigator {
     }
   }
 
+
   /**
    * Goes to the user details screen.
    *
@@ -56,4 +59,12 @@ public class Navigator {
       context.startActivity(intentToLaunch);
     }
   }
+
+  public void navigateToLoginTwitter(Context context){
+    if (context != null){
+      Intent intentToLaunch = OauthActivity.getCallingIntent(context);
+      context.startActivity(intentToLaunch);
+    }
+  }
+
 }

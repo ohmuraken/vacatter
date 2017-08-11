@@ -76,6 +76,7 @@ dependencies {
   compile presentationDependencies.kotlinStdlib
   compile presentationDependencies.rxKotlin
   provided presentationDependencies.javaxAnnotation
+  compile 'org.twitter4j:twitter4j-core:4.0.4'
 
   androidTestCompile presentationTestDependencies.mockito
   androidTestCompile presentationTestDependencies.dexmaker
