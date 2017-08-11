@@ -61,10 +61,12 @@ ext {
                         rxJava         : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
                         arrow          : "com.fernandocejas:arrow:${arrowVersion}"]
 
-  domainTestDependencies = [junit        : "junit:junit:${jUnitVersion}",
-                            mockito      : "org.mockito:mockito-core:${mockitoVersion}",
-                            assertj      : "org.assertj:assertj-core:${assertJVersion}",
-                            mockitoKotlin: "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}"]
+  domainTestDependencies = [junit                : "junit:junit:${jUnitVersion}",
+                            mockito              : "org.mockito:mockito-core:${mockitoVersion}",
+                            assertj              : "org.assertj:assertj-core:${assertJVersion}",
+                            mockitoKotlin        : "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
+                            powermockModuleJunit4: "org.powermock:powermock-module-junit4:${powermockVersion}",
+                            powermockApiMockito  : "org.powermock:powermock-api-mockito2:${powermockVersion}"]
 
   dataDependencies = [daggerCompiler    : "com.google.dagger:dagger-compiler:${daggerVersion}",
                       dagger            : "com.google.dagger:dagger:${daggerVersion}",

@@ -30,4 +30,6 @@ dependencies {
   testCompile domainTestDependencies.mockito
   testCompile domainTestDependencies.assertj
   testCompile domainTestDependencies.mockitoKotlin
+  testCompile domainTestDependencies.powermockModuleJunit4
+  testCompile domainTestDependencies.powermockApiMockito
 }
