@@ -5,17 +5,37 @@ import com.google.gson.annotations.SerializedName
 /**
  * Tweet Entity used in the data layer.
  *
- * Created on 8/9/17.
+ * Created on 8/9/17
  */
-data class TweetEntity(
-    @SerializedName("id") val tweetId: String,
-    @SerializedName("media_urls") val mediaUrls: List<String>,
-    @SerializedName("favorite_count") val favoriteCount: Int,
-    @SerializedName("retweet_count") val retweetCount: Int,
-    @SerializedName("user_id") val userId: Int,
-    @SerializedName("name") val name: String,
-    @SerializedName("retweeted") val favorited: Boolean,
-    @SerializedName("favorited") val retweeted: Boolean,
-    @SerializedName("text") val text: String,
-    @SerializedName("face_change_urls") val faceChangeUrls: List<String>?
-)
+class TweetEntity {
+
+  @SerializedName("id")
+  var tweetId: String = ""
+
+  @SerializedName("media_urls")
+  var mediaUrls: List<String> = listOf<String>()
+
+  @SerializedName("favorite_count")
+  var favoriteCount: Int = 0
+
+  @SerializedName("retweet_count")
+  var retweetCount: Int = 0
+
+  @SerializedName("user_id")
+  var userId: String = ""
+
+  @SerializedName("name")
+  var name: String = ""
+
+  @SerializedName("retweeted")
+  var favorited: Boolean = false
+
+  @SerializedName("favorited")
+  var retweeted: Boolean = false
+
+  @SerializedName("text")
+  var text: String = ""
+
+  @SerializedName("face_change_urls")
+  var faceChangeUrls: List<String> = listOf<String>()
+}

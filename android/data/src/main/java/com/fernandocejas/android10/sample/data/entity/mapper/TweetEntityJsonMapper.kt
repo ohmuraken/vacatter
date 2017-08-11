@@ -26,7 +26,7 @@ class TweetEntityJsonMapper constructor() {
    * @throws com.google.gson.JsonSyntaxException if the json string is not a valid json structure.
    */
   @Throws(JsonSyntaxException::class)
-  fun transformTweetEntityCollection(tweetListJsonResponse: String): List<TweetEntity> {
+  fun transformTweetEntityCollection(tweetListJsonResponse: String?): List<TweetEntity> {
     val listOfTweetEntityType = object : TypeToken<List<TweetEntity>>() {}.type
     return this.gson.fromJson(tweetListJsonResponse, listOfTweetEntityType)
   }

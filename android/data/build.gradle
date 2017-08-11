@@ -62,12 +62,15 @@ dependencies {
   compile dataDependencies.rxAndroid
   compile dataDependencies.androidAnnotations
   compile dataDependencies.kotlinStdlib
+  compile dataDependencies.rxKotlin
 
   testCompile testDependencies.junit
   testCompile testDependencies.assertj
   testCompile testDependencies.mockito
   testCompile testDependencies.robolectric
   testCompile testDependencies.mockitoKotlin
+  testCompile testDependencies.powermockModuleJunit4
+  testCompile testDependencies.powermockApiMockito
 }
 repositories {
   mavenCentral()
