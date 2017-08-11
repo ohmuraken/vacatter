@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -17,7 +17,6 @@ package com.fernandocejas.android10.sample.presentation.navigation;
 
 import android.content.Context;
 import android.content.Intent;
-
 import com.fernandocejas.android10.sample.presentation.view.activity.OauthActivity;
 import com.fernandocejas.android10.sample.presentation.view.activity.UserDetailsActivity;
 import com.fernandocejas.android10.sample.presentation.view.activity.UserListActivity;
@@ -27,11 +26,9 @@ import javax.inject.Singleton;
 /**
  * Class used to navigate through the application.
  */
-@Singleton
-public class Navigator {
+@Singleton public class Navigator {
 
-  @Inject
-  public Navigator() {
+  @Inject public Navigator() {
     //empty
   }
 
@@ -47,7 +44,6 @@ public class Navigator {
     }
   }
 
-
   /**
    * Goes to the user details screen.
    *
@@ -60,11 +56,10 @@ public class Navigator {
     }
   }
 
-  public void navigateToLoginTwitter(Context context){
-    if (context != null){
+  public void navigateToLoginTwitter(Context context) {
+    if (context != null) {
       Intent intentToLaunch = OauthActivity.getCallingIntent(context);
       context.startActivity(intentToLaunch);
     }
   }
-
 }

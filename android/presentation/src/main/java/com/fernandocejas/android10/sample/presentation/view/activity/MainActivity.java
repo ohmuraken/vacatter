@@ -4,18 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.provider.Settings;
+
 import android.widget.Button;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import twitter4j.TwitterException;
-import twitter4j.auth.OAuthAuthorization;
-import twitter4j.auth.RequestToken;
-import twitter4j.conf.Configuration;
-import twitter4j.conf.ConfigurationContext;
-
 import com.fernandocejas.android10.sample.presentation.R;
-
+import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 /**
  * Main application screen. This is the app entry point.
@@ -23,12 +18,12 @@ import com.fernandocejas.android10.sample.presentation.R;
 public class MainActivity extends BaseActivity {
 
   @Bind(R.id.btn_LoadData) Button btn_LoadData;
+
   @Bind(R.id.btn_LoadTimeTine) Button btn_LoadTimeLine;
   @Bind(R.id.btn_LoginTwitter)
   Button btn_LoginTwitter;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
+  @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     ButterKnife.bind(this);
@@ -37,8 +32,7 @@ public class MainActivity extends BaseActivity {
   /**
    * Goes to the user list screen.
    */
-  @OnClick(R.id.btn_LoadData)
-  void navigateToUserList() {
+  @OnClick(R.id.btn_LoadData) void navigateToUserList() {
     this.navigator.navigateToUserList(this);
   }
 

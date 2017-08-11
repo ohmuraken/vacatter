@@ -77,6 +77,10 @@ dependencies {
   compile presentationDependencies.rxKotlin
   provided presentationDependencies.javaxAnnotation
   compile 'org.twitter4j:twitter4j-core:4.0.4'
+  compile 'com.twitter.sdk.android:twitter-core:3.1.0'
+  compile 'com.twitter.sdk.android:tweet-ui:3.1.0'
+  compile 'com.twitter.sdk.android:tweet-composer:3.1.0'
+  compile 'com.twitter.sdk.android:twitter-mopub:3.1.0'
 
   androidTestCompile presentationTestDependencies.mockito
   androidTestCompile presentationTestDependencies.dexmaker
@@ -92,4 +96,5 @@ dependencies {
 }
 repositories {
   mavenCentral()
+  jcenter()
 }

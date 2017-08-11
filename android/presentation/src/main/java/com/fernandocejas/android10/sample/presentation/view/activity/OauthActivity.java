@@ -27,7 +27,6 @@ public class OauthActivity extends BaseActivity {
     private static final String Consumer_Secret = "";
 
 
-
     public static Intent getCallingIntent(Context context) {
         return new Intent(context, OauthActivity.class);
     }
