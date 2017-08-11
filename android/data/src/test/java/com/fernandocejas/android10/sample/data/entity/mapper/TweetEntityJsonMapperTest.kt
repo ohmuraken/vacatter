@@ -20,50 +20,50 @@ class TweetEntityJsonMapperTest {
   private var tweetEntityJsonMapper: TweetEntityJsonMapper? = null
 
   private val JSON_RESPONSE_TWEET_COLLECTION = "[\n" +
-      "    {\n" +
-      "        'id': '894607123866296320',\n" +
-      "        'media_urls': [\n" +
-      "            'https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg',\n" +
-      "            'https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg',\n" +
-      "            'https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg',\n" +
-      "            'https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg'\n" +
-      "        ],\n" +
-      "        'favorite_count': 40,\n" +
-      "        'retweet_count': 34,\n" +
-      "        'user_id': '471707277',\n" +
-      "        'name': '真奈',\n" +
-      "        'retweeted': False,\n" +
-      "        'favorited': True,\n" +
-      "        'text': 'だあああああ',\n" +
-      "        'face_change_urls': [\n" +
-      "            'https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg',\n" +
-      "            'https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg',\n" +
-      "            'https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg',\n" +
-      "            'https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg'\n" +
-      "        ]\n" +
-      "    },\n" +
-      "    {\n" +
-      "        'id': '894607123866296322',\n" +
-      "        'media_urls': [\n" +
-      "            'https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg',\n" +
-      "            'https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg',\n" +
-      "            'https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg',\n" +
-      "            'https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg'\n" +
-      "        ],\n" +
-      "        'favorite_count': 43,\n" +
-      "        'retweet_count': 34,\n" +
-      "        'user_id': '471707277',\n" +
-      "        'name': '真奈',\n" +
-      "        'retweeted': True,\n" +
-      "        'favorited': False,\n" +
-      "        'text': 'なああああああああ',\n" +
-      "        'face_change_urls': [\n" +
-      "            'https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg',\n" +
-      "            'https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg',\n" +
-      "            'https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg',\n" +
-      "            'https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg'\n" +
-      "        ]\n" +
-      "    }\n" +
+      "  {\n" +
+      "    \"face_change_urls\": [\n" +
+      "      \"https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg\", \n" +
+      "      \"https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg\", \n" +
+      "      \"https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg\", \n" +
+      "      \"https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg\"\n" +
+      "    ], \n" +
+      "    \"favorite_count\": 40, \n" +
+      "    \"favorited\": true, \n" +
+      "    \"id\": \"894607123866296320\", \n" +
+      "    \"media_urls\": [\n" +
+      "      \"https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg\", \n" +
+      "      \"https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg\", \n" +
+      "      \"https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg\", \n" +
+      "      \"https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg\"\n" +
+      "    ], \n" +
+      "    \"name\": \"真奈\", \n" +
+      "    \"retweet_count\": 34, \n" +
+      "    \"retweeted\": false, \n" +
+      "    \"text\": \"だあああああ\", \n" +
+      "    \"user_id\": \"471707277\"\n" +
+      "  }, \n" +
+      "  {\n" +
+      "    \"face_change_urls\": [\n" +
+      "      \"https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg\", \n" +
+      "      \"https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg\", \n" +
+      "      \"https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg\", \n" +
+      "      \"https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg\"\n" +
+      "    ], \n" +
+      "    \"favorite_count\": 43, \n" +
+      "    \"favorited\": false, \n" +
+      "    \"id\": \"894607123866296322\", \n" +
+      "    \"media_urls\": [\n" +
+      "      \"https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg\", \n" +
+      "      \"https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg\", \n" +
+      "      \"https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg\", \n" +
+      "      \"https://pbs.twimg.com/media/DGpIcHeVoAApbaf.jpg\"\n" +
+      "    ], \n" +
+      "    \"name\": \"真奈\", \n" +
+      "    \"retweet_count\": 34, \n" +
+      "    \"retweeted\": true, \n" +
+      "    \"text\": \"なああああああああ\", \n" +
+      "    \"user_id\": \"471707277\"\n" +
+      "  }\n" +
       "]"
 
   @Rule

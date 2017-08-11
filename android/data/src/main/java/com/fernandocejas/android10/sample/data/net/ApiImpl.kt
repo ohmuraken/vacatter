@@ -14,17 +14,16 @@ import javax.inject.Inject
  *
  * Created on 8/10/17.
  */
-class ApiImpl @Inject constructor(context: Context, tweetEntityJsonMapper: TweetEntityJsonMapper) : Api {
-
-  @Inject lateinit var tweetEntityJsonMapper: TweetEntityJsonMapper
-  @Inject lateinit var context: Context
+class ApiImpl @Inject constructor(var context: Context, var tweetEntityJsonMapper: TweetEntityJsonMapper) : Api {
 
   override fun tweetEntityList(): Observable<List<TweetEntity>> {
     return Observable.create { emitter ->
       if (isThereInternetConnection()) {
         try {
           val resTwitterEntities = getTweetEntitiesFromApi()
+          println(resTwitterEntities)
           if (resTwitterEntities != null) {
+            println(tweetEntityJsonMapper.transformTweetEntityCollection(resTwitterEntities))
             emitter.onNext(tweetEntityJsonMapper.transformTweetEntityCollection(resTwitterEntities))
             emitter.onComplete()
           } else {

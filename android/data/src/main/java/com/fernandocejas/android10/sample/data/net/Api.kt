@@ -11,7 +11,7 @@ import io.reactivex.Observable
 
 interface Api {
   val API_BASE_URL: String
-    get() = "https://mk-azureserver.japaneast.cloudapp.azure.com/api/v1/"
+    get() = "http://mk-azureserver.japaneast.cloudapp.azure.com:5000/api/v1/"
 
   val API_URL_GET_TWEET_LIST: String
     get() = API_BASE_URL + "tweets"
