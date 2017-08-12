@@ -1,6 +1,7 @@
 package com.fernandocejas.android10.sample.presentation.view.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.twitter.sdk.android.core.DefaultLogger;
 import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.Twitter;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.TwitterAuthToken;
 import com.twitter.sdk.android.core.TwitterConfig;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
@@ -46,7 +48,12 @@ public class MainActivity extends BaseActivity {
         TwitterSession session = result.data;
         String msg = "@" + session.getUserName() + "logged in! (#" + session.getUserId() + ")";
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
-      }
+
+        SharedPreferences prefer = getSharedPreferences("twitter",MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefer.edit();
+        editor.putString("token", session.getAuthToken().token);
+        editor.apply();
+    }
 
       @Override public void failure(TwitterException exception) {
         Log.d("TwitterKit", "Login with Twitter failure", exception);
