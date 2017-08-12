@@ -7,7 +7,9 @@
   <string name="activity_title_user_details">User Details</string>
 
   <string name="btn_text_load_data">Load Sample Data</string>
+  <string name="btn_text_load_time_line">Load Time Line</string>
   <string name="btn_text_retry">Retry</string>
+  <string name="string_text_favorite">いいね</string>
 
   <string name="view_text_email">Email:</string>
   <string name="view_text_followers">Followers:</string>
