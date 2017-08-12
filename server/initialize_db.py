@@ -10,9 +10,11 @@ conn = sqlite3.connect(dbname)
 c = conn.cursor()
 
 create_table = '''CREATE TABLE timelines (
-                    id integer, user_id integer, text text, name text,    screen_name text,
+                    id integer, user_id integer, text text,
+                    name text, screen_name text,
                     media_count integer, media_url1 text, media_url2 text, media_url3 text, media_url4 text,
-                    face_change_url1 text, face_change_url2 text, face_change_url3 text, face_change_url4 text,
+                    face_change_count integer, face_change_url1 text, face_change_url2 text, face_change_url3 text, face_change_url4 text,
+                    retweeted_status integer, mention_name text, mention_screen_name text, mention_id integer,
                     favorite_count integer, retweet_count integer,
                     favorited integer, retweeted integer
                 )'''
@@ -47,13 +49,36 @@ for tweet in tweets:
     if tweet._json["retweeted"]: retweeted_flag = 1
     else: retweeted_flag = 0
 
-    sql = '''INSERT INTO timelines (id , user_id , text , name , screen_name ,
+    # リツイートで出現したコンテンツ
+    if "retweeted_status" in tweet._json.keys():
+        retweeted_status = 1
+        mention_name = tweet._json["entities"]["user_mentions"][0]["name"]
+        mention_id = tweet._json["entities"]["user_mentions"][0]["id"]
+        mention_screen_name = tweet._json["entities"]["user_mentions"][0]["screen_name"]
+    else:
+        retweeted_status = 0
+        mention_id = "none"
+        mention_name = "none"
+        mention_screen_name = "none"
+
+    # 顔変換 TODO
+    face_change_count = 0
+    face_change_urls = ["none", "none", "none", "none"]
+
+    sql = '''INSERT INTO timelines (id , user_id , text ,
+                                    name , screen_name ,
                                     media_count, media_url1, media_url2, media_url3, media_url4,
-                                    favorite_count, retweet_count,favorited, retweeted)
-                                    values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'''
-    tweet_data = (tweet._json["id"], tweet._json["user"]["id"], tweet._json["text"],
+                                    face_change_count, face_change_url1, face_change_url2, face_change_url3, face_change_url4,
+                                    retweeted_status, mention_name, mention_screen_name, mention_id,
+                                    favorite_count, retweet_count,
+                                    favorited, retweeted)
+                                    values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'''
+
+    tweet_data = (tweet._json["id"] , tweet._json["user"]["id"], tweet._json["text"],
                   tweet._json["user"]["name"],tweet._json["user"]["screen_name"],
                   media_count, media_urls[0], media_urls[1], media_urls[2], media_urls[3],
+                  face_change_count, face_change_urls[0], face_change_urls[1], face_change_urls[2], face_change_urls[3],
+                  retweeted_status, mention_name, mention_screen_name, mention_id,
                   tweet._json["favorite_count"], tweet._json["retweet_count"],
                   favorited_flag, retweeted_flag)
     c.execute(sql, tweet_data)
