@@ -61,12 +61,16 @@ dependencies {
   compile dataDependencies.rxJava
   compile dataDependencies.rxAndroid
   compile dataDependencies.androidAnnotations
+  compile dataDependencies.kotlinStdlib
+  compile dataDependencies.rxKotlin
 
   testCompile testDependencies.junit
   testCompile testDependencies.assertj
   testCompile testDependencies.mockito
   testCompile testDependencies.robolectric
-  compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+  testCompile testDependencies.mockitoKotlin
+  testCompile testDependencies.powermockModuleJunit4
+  testCompile testDependencies.powermockApiMockito
 }
 repositories {
   mavenCentral()

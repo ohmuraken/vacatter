@@ -73,6 +73,8 @@ dependencies {
   compile presentationDependencies.recyclerView
   compile presentationDependencies.rxJava
   compile presentationDependencies.rxAndroid
+  compile presentationDependencies.kotlinStdlib
+  compile presentationDependencies.rxKotlin
   provided presentationDependencies.javaxAnnotation
 
   androidTestCompile presentationTestDependencies.mockito
@@ -83,7 +85,6 @@ dependencies {
 
   //Development
   compile developmentDependencies.leakCanary
-  compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
   compile 'com.android.support:design:25.3.1'
 }
 repositories {

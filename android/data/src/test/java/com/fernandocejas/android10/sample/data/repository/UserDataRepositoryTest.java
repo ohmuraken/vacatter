@@ -27,7 +27,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.anyInt;
@@ -44,7 +44,6 @@ public class UserDataRepositoryTest {
   @Mock private UserEntityDataMapper mockUserEntityDataMapper;
   @Mock private UserDataStore mockUserDataStore;
   @Mock private UserEntity mockUserEntity;
-  @Mock private User mockUser;
 
   @Before
   public void setUp() {
