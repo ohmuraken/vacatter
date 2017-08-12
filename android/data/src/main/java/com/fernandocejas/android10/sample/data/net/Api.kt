@@ -1,6 +1,9 @@
 package com.fernandocejas.android10.sample.data.net
 
+import android.media.FaceDetector.Face
+import android.net.Uri
 import com.fernandocejas.android10.sample.data.entity.TweetEntity
+import io.reactivex.Completable
 import io.reactivex.Observable
 
 /**
@@ -17,4 +20,5 @@ interface Api {
     get() = API_BASE_URL + "tweets"
 
   fun tweetEntityList(): Observable<List<TweetEntity>>
+  fun postFace(photo: Uri): Completable
 }

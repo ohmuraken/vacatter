@@ -7,5 +7,5 @@ import java.net.URI
  *
  * Created on 8/13/17.
  */
-class Face constructor(val image: URI) {
+class Face constructor(val photo: URI) {
 }
