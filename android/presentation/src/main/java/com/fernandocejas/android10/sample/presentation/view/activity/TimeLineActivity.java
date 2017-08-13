@@ -8,7 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.bumptech.glide.Glide;
 import com.fernandocejas.android10.sample.presentation.R;
+import com.fernandocejas.android10.sample.presentation.view.fragment.SquareHeightFragment;
 
 /**
  * Created by apple on 2017/08/12.
@@ -23,6 +25,8 @@ public class TimeLineActivity extends BaseActivity {
     for (int i = 0; i < 5; i++) {
       LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
       LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.row_card, null);
+      SquareHeightFragment imageView = (SquareHeightFragment)linearLayout.findViewById(R.id.post_image);
+      Glide.with(this).load("http://goo.gl/h8qOq7").into(imageView);
       CardView cardView = (CardView) linearLayout.findViewById(R.id.cardView);
       TextView textBox = (TextView) linearLayout.findViewById(R.id.textBox);
       Button favBtn = (Button) linearLayout.findViewById(R.id.btn_favorite);
