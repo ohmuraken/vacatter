@@ -47,30 +47,6 @@ class ApiImpl @Inject constructor(var context: Context,
     }
   }
 
-  override fun postFace(photo: Uri): Completable {
-    return Completable.create { emitter: CompletableEmitter ->
-      if (isThereInternetConnection()) {
-        try {
-          val retrofit: Retrofit = Retrofit.Builder()
-              .baseUrl(API_BASE_URL)
-              .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-              .build()
-          val twitterApi = retrofit.create(TwitterApi::class.java)
-          val file: File = File(photo.path)
-          val requestFile: RequestBody = RequestBody.create(
-              MediaType.parse(context.getContentResolver().getType(photo.path)),
-              file)
-
-          emitter.onComplete()
-        } catch (e: Exception) {
-          emitter.onError(NetworkConnectionException(e.cause))
-        }
-      } else {
-        emitter.onError(NetworkConnectionException())
-      }
-    }
-  }
-
   @Throws(MalformedURLException::class)
   fun getTweetEntitiesFromApi(): String? {
     return ApiConnection.createGET(API_URL_GET_TWEET_LIST).requestSyncCall()

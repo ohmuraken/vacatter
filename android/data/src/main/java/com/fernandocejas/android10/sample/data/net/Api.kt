@@ -20,5 +20,4 @@ interface Api {
     get() = API_BASE_URL + "tweets"
 
   fun tweetEntityList(): Observable<List<TweetEntity>>
-  fun postFace(photo: Uri): Completable
 }
