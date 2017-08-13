@@ -18,6 +18,7 @@ android {
     versionName globalConfiguration.getAt("androidVersionName")
     testInstrumentationRunner globalConfiguration.getAt("testInstrumentationRunner")
     testApplicationId globalConfiguration.getAt("testApplicationId")
+    multiDexEnabled true
   }
 
   compileOptions {
@@ -76,7 +77,6 @@ dependencies {
   compile presentationDependencies.kotlinStdlib
   compile presentationDependencies.rxKotlin
   provided presentationDependencies.javaxAnnotation
-  compile 'org.twitter4j:twitter4j-core:4.0.4'
   compile 'com.twitter.sdk.android:twitter-core:3.1.0'
   compile 'com.twitter.sdk.android:tweet-ui:3.1.0'
   compile 'com.twitter.sdk.android:tweet-composer:3.1.0'
