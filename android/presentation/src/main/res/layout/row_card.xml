@@ -9,7 +9,7 @@
       xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:card_view="http://schemas.android.com/apk/res-auto"
       android:layout_width="match_parent"
-      android:layout_height="200dp"
+      android:layout_height="400dp"
       card_view:cardCornerRadius="4dp"
       android:layout_marginLeft="10dp"
       android:layout_marginRight="10dp"
@@ -30,25 +30,28 @@
           android:textAppearance="?android:attr/textAppearanceLarge"
           android:text="CardView"
           android:id="@+id/textBox"
-          android:textSize="30dp"
-          android:layout_centerVertical="true"
+          android:textSize="30sp"
           android:layout_marginLeft="17dp"
           android:layout_marginStart="17dp"/>
 
-      <ImageView
+      <com.fernandocejas.android10.sample.presentation.view.fragment.SquareHeightFragment
+          android:layout_width="1dp"
+          android:layout_height="0dp"
+          android:layout_weight="3"
+          android:layout_gravity="center"
+          android:src="@drawable/ic_launcher"/>
+      <FrameLayout
           android:layout_width="match_parent"
           android:layout_height="0dp"
-          android:layout_weight="2"
-          android:src="@drawable/ic_launcher"/>
-
-      <Button
-          android:id="@+id/btn_favorite"
-          android:layout_width="wrap_content"
-          android:layout_height="0dp"
-          android:layout_weight="1"
-          android:text="@string/string_text_favorite"
-          android:layout_gravity="end"
-          android:background="@drawable/button_favorite"/>
+          android:layout_weight="1">
+        <Button
+            android:id="@+id/btn_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/string_text_favorite"
+            android:layout_gravity="end|bottom"
+            android:background="@drawable/button_favorite"/>
+      </FrameLayout>
     </LinearLayout>
   </android.support.v7.widget.CardView>
 </LinearLayout>
