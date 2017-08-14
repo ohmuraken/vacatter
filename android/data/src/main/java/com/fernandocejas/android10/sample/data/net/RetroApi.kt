@@ -20,7 +20,7 @@ import javax.inject.Singleton
 @Singleton
 class RetroApi @Inject constructor() {
 
-  val API_BASE_URL: String = "http://mk-azureserver.japaneast.cloudapp.azure.com:5000/api/v1/"
+  val API_BASE_URL: String = "http://mk-azureserver.japaneast.cloudapp.azure.com:5000/vacatter/demo/api/v1/"
   val service: RestApiService
 
   init {
@@ -31,8 +31,8 @@ class RetroApi @Inject constructor() {
     service = retro.create(RestApiService::class.java)
   }
 
-  fun postFace(token: MultipartBody.Part, file: MultipartBody.Part): Completable {
-    return service.postFace(token, file)
+  fun postFace(user_id: MultipartBody.Part, image: MultipartBody.Part): Completable {
+    return service.postFace(user_id, image)
   }
 
   fun getLogginInterceptor(): Interceptor {

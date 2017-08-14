@@ -24,17 +24,13 @@ import java.net.URI
 class FaceCloudDataStore constructor(val api: RetroApi, val helper: DataStoreHelper) : FaceDataStore {
 
   override fun postFace(photo: URI): Completable {
-    val token: String = helper.getToken()
     val uri: Uri = helper.convertURItoUri(photo)
-
     val stream: InputStream = helper.convertUriToInputStream(uri)
-
     val requestFile = helper.createRequestBody(stream)
 
     val imageBody = helper.createMultipardBody("image", "image", requestFile)
-    val tokenBody = MultipartBody.Part.createFormData("token", helper.getToken())
+    val tokenBody = MultipartBody.Part.createFormData("user_id", helper.getUserId())
 
-    // convert uri to Image File
     return this.api.postFace(tokenBody, imageBody)
   }
 }
