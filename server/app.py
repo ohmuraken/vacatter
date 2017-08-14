@@ -25,8 +25,20 @@ def get_timeline():
     sql = "SELECT * from timelines"
     df = pd.read_sql_query(sql, conn)
     conn.close()
-    json_list = json.loads(df.to_json(orient="records"))
-    return jsonify(json_list)
+    
+    media_urls_set = []
+    for urls in df["media_urls"]:
+        media_urls_set.append([url.replace("'", "").replace(" ", "") for url in urls[1:-1].split(",")])
+    df["media_urls"] = media_urls_set
+
+    face_change_urls_set = []
+    for urls in df["face_change_urls"]:
+        face_change_urls_set.append([url.replace("'", "").replace(" ", "") for url in urls[1:-1].split(",")])
+    df["face_change_urls"] = face_change_urls_set
+
+    df_json_str = df.to_json(orient="records")
+    df_json = json.loads(df_json_str)
+    return jsonify(df_json)
 
 @app.teardown_appcontext
 def close_connection(exception):
