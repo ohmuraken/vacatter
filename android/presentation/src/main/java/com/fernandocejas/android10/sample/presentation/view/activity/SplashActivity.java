@@ -25,7 +25,7 @@ public class SplashActivity extends BaseActivity{
       @Override
       public void run() {
         Intent intent;
-        SharedPreferences prefer = getSharedPreferences("twitter", getApplicationContext().MODE_PRIVATE);
+        SharedPreferences prefer = getSharedPreferences("twitter", MODE_PRIVATE);
         String token = prefer.getString("token", "");
         if (!token.equals("")) {
           intent = new Intent(SplashActivity.this, TimeLineActivity.class);
