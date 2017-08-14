@@ -13,7 +13,6 @@ access_token = "893758559548080128-4OsFtaNZAZ9UeXqctWeNpC4uuK9nrgL"
 access_token_secret = "o8lS3n0D0qNJp8ij4ky4uA2AuRW3gKenhaz2zLjoGjF8Q"
 
 dir_path = os.path.abspath(os.path.dirname(__file__))
-api: tweepy.API
 
 
 def authorize(consumer_key, consumer_secret, access_token, access_token_secret):
