@@ -1,5 +1,6 @@
 package com.fernandocejas.android10.sample.presentation.view.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -50,7 +51,7 @@ public class MainActivity extends BaseActivity {
         String msg = "@" + session.getUserName() + "logged in! (#" + session.getUserId() + ")";
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
 
-        SharedPreferences prefer = getSharedPreferences("twitter", MODE_PRIVATE);
+        SharedPreferences prefer = getSharedPreferences("twitter", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefer.edit();
         editor.putString("token", session.getAuthToken().token);
         editor.apply();
