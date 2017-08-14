@@ -54,6 +54,8 @@ public class MainActivity extends BaseActivity {
         SharedPreferences prefer = getSharedPreferences("twitter", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefer.edit();
         editor.putString("token", session.getAuthToken().token);
+        editor.putString("secret",session.getAuthToken().secret);
+        editor.putLong("user_id", session.getId());
         editor.apply();
       }
 
