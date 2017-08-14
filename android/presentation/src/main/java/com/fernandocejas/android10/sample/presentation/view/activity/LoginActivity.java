@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.fernandocejas.android10.sample.presentation.R;
@@ -22,7 +20,6 @@ import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by seiya on 2017/08/14.
