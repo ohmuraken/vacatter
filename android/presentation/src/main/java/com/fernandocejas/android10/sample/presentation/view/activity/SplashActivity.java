@@ -13,7 +13,7 @@ import com.fernandocejas.android10.sample.presentation.R;
  * Created by apple on 2017/08/13.
  */
 
-public class SplashActivity extends BaseActivity{
+public class SplashActivity extends BaseActivity {
   private Handler handler = new Handler();
   private Runnable execute_intent;
   private Intent intent;
@@ -22,9 +22,8 @@ public class SplashActivity extends BaseActivity{
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_splash);
-    final boolean status=AppLaunchChecker.hasStartedFromLauncher(getApplicationContext());
+    final boolean status = AppLaunchChecker.hasStartedFromLauncher(getApplicationContext());
     AppLaunchChecker.onActivityCreate(this);
-
 
     execute_intent = new Runnable() {
       @Override
@@ -32,23 +31,20 @@ public class SplashActivity extends BaseActivity{
 
         SharedPreferences prefer = getSharedPreferences("twitter", Context.MODE_PRIVATE);
         String token = prefer.getString("token", "");
-        if(status){
+        if (status) {
           if (!token.equals("")) {
             intent = new Intent(SplashActivity.this, TimeLineActivity.class);
           } else {
-            intent = new Intent(SplashActivity.this, MainActivity.class);
+            intent = new Intent(SplashActivity.this, LoginActivity.class);
           }
-        }else{
+        } else {
           intent = new Intent(SplashActivity.this, TutorialActivity.class);
         }
         startActivity(intent);
         finish();
-
-
       }
     };
 
     handler.postDelayed(execute_intent, 3000);
-
   }
 }
