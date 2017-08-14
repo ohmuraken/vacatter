@@ -31,7 +31,7 @@ class RetroApi @Inject constructor() {
     service = retro.create(RestApiService::class.java)
   }
 
-  fun postFace(token: String, file: MultipartBody.Part): Completable {
+  fun postFace(token: MultipartBody.Part, file: MultipartBody.Part): Completable {
     return service.postFace(token, file)
   }
 

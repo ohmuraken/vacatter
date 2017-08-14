@@ -17,6 +17,7 @@ package com.fernandocejas.android10.sample.presentation.navigation;
 
 import android.content.Context;
 import android.content.Intent;
+import com.fernandocejas.android10.sample.presentation.view.activity.PostFaceActivity;
 import com.fernandocejas.android10.sample.presentation.view.activity.TweetCardActivityKt;
 import com.fernandocejas.android10.sample.presentation.view.activity.UserDetailsActivity;
 import com.fernandocejas.android10.sample.presentation.view.activity.UserListActivity;
@@ -75,7 +76,7 @@ import javax.inject.Singleton;
    */
   public void navigateToPostImage(Context context) {
     if (context != null) {
-      Intent intentToLaunch = UserListActivity.getCallingIntent(context);
+      Intent intentToLaunch = PostFaceActivity.Companion.getCallingIntent(context);
       context.startActivity(intentToLaunch);
     }
   }

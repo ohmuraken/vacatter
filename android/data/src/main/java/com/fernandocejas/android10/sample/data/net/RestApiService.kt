@@ -13,5 +13,8 @@ import retrofit2.http.Part
  */
 interface RestApiService {
   @Multipart
-  @POST("face") fun postFace(@Part token: String, @Part file: MultipartBody.Part): Completable
+  @POST("face") fun postFace(
+      @Part token: MultipartBody.Part,
+      @Part file: MultipartBody.Part
+  ): Completable
 }

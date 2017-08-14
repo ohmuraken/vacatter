@@ -18,6 +18,7 @@ package com.fernandocejas.android10.sample.presentation.internal.di.components;
 import android.content.Context;
 import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread;
 import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
+import com.fernandocejas.android10.sample.domain.repository.FaceRepository;
 import com.fernandocejas.android10.sample.domain.repository.TweetRepository;
 import com.fernandocejas.android10.sample.domain.repository.UserRepository;
 import com.fernandocejas.android10.sample.presentation.internal.di.modules.ApplicationModule;
@@ -39,4 +40,5 @@ public interface ApplicationComponent {
   PostExecutionThread postExecutionThread();
   UserRepository userRepository();
   TweetRepository tweetRepository();
+  FaceRepository faceRepository();
 }
