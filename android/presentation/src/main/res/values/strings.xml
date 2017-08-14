@@ -7,6 +7,7 @@
   <string name="activity_title_user_details">User Details</string>
   <string name="activity_title_splash">Splash</string>
   <string name="activity_title_usecase">Use Case</string>
+  <string name="activity_title_tutrial">Tutorial</string>
 
   <string name="btn_text_load_data">Load Sample Data</string>
   <string name="btn_text_load_time_line">Load Time Line</string>
