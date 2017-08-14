@@ -30,7 +30,7 @@ public class SplashActivity extends BaseActivity{
         if (!token.equals("")) {
           intent = new Intent(SplashActivity.this, TimeLineActivity.class);
         } else {
-          intent = new Intent(SplashActivity.this, MainActivity.class);
+          intent = new Intent(SplashActivity.this, LoginActivity.class);
         }
         startActivity(intent);
         finish();
