@@ -17,6 +17,7 @@ package com.fernandocejas.android10.sample.presentation.navigation;
 
 import android.content.Context;
 import android.content.Intent;
+import com.fernandocejas.android10.sample.presentation.view.activity.TweetCardActivityKt;
 import com.fernandocejas.android10.sample.presentation.view.activity.UserDetailsActivity;
 import com.fernandocejas.android10.sample.presentation.view.activity.UserListActivity;
 import javax.inject.Inject;
@@ -55,4 +56,27 @@ import javax.inject.Singleton;
     }
   }
 
+  /**
+   * Goes to the user details screen.
+   *
+   * @param context A Context needed to open the destiny activity.
+   */
+  public void navigateToLoadTwitterList(Context context) {
+    if (context != null) {
+      Intent intentToLaunch = TweetCardActivityKt.getCallingIntent(context);
+      context.startActivity(intentToLaunch);
+    }
+  }
+
+  /**
+   * Goes to the user details screen.
+   *
+   * @param context A Context needed to open the destiny activity.
+   */
+  public void navigateToPostImage(Context context) {
+    if (context != null) {
+      Intent intentToLaunch = UserListActivity.getCallingIntent(context);
+      context.startActivity(intentToLaunch);
+    }
+  }
 }

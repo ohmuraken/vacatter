@@ -28,10 +28,10 @@ class TweetEntityToDataMapper @Inject constructor() {
   }
 
   fun transform(tweetEntityCollection: Collection<TweetEntity>): List<Tweet> {
-    val tweetList: List<Tweet> = mutableListOf()
+    val tweetList: MutableList<Tweet> = mutableListOf<Tweet>()
     tweetEntityCollection.forEach {
       val tweet: Tweet = transform(it)
-      tweetList.plus(tweet)
+      tweetList.add(tweet)
     }
     return tweetList
   }

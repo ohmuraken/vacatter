@@ -38,6 +38,20 @@
       android:text="@string/btn_text_load_time_line"
   />
 
+  <Button
+      android:id="@+id/btn_LoadTwitterList"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Load Twitter List"
+      />
+
+  <Button
+      android:id="@+id/btn_PostImage"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Post Image"
+      />
+
   <com.twitter.sdk.android.core.identity.TwitterLoginButton
       android:id="@+id/btn_LoginTwitter"
       android:layout_width="wrap_content"
