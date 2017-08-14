@@ -2,10 +2,18 @@ package com.fernandocejas.android10.sample.data.net
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.net.Uri
 import com.fernandocejas.android10.sample.data.entity.TweetEntity
 import com.fernandocejas.android10.sample.data.entity.mapper.TweetEntityJsonMapper
 import com.fernandocejas.android10.sample.data.exception.NetworkConnectionException
+import com.squareup.okhttp.MediaType
+import com.squareup.okhttp.RequestBody
+import io.reactivex.Completable
+import io.reactivex.CompletableEmitter
 import io.reactivex.Observable
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import java.io.File
 import java.net.MalformedURLException
 import javax.inject.Inject
 
@@ -14,7 +22,8 @@ import javax.inject.Inject
  *
  * Created on 8/10/17.
  */
-class ApiImpl @Inject constructor(var context: Context, var tweetEntityJsonMapper: TweetEntityJsonMapper) : Api {
+class ApiImpl @Inject constructor(var context: Context,
+    var tweetEntityJsonMapper: TweetEntityJsonMapper) : Api {
 
   override fun tweetEntityList(): Observable<List<TweetEntity>> {
     return Observable.create { emitter ->

@@ -16,7 +16,7 @@ class FaceTest {
 
   @Test
   fun testFaceConstructorHappyCase() {
-    val faceImageURI :URI = face.image
+    val faceImageURI :URI = face.photo
     Assertions.assertThat(FAKE_IMAGE_URI).isEqualTo(faceImageURI)
   }
 }
