@@ -73,4 +73,9 @@ public class MainActivity extends BaseActivity {
     startActivity(intent);
   }
 
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    btn_LoginTwitter.onActivityResult(requestCode, resultCode, data);
+  }
 }
