@@ -21,6 +21,8 @@ ext {
   javaxInjectVersion = '1'
   gsonVersion = '2.3'
   okHttpVersion = '2.5.0'
+  okHttp3Version = '3.8.1'
+  retrofitVersion = '2.3.0'
   androidAnnotationsVersion = '21.0.3'
   arrowVersion = '1.0.0'
 
@@ -49,8 +51,8 @@ ext {
                               rxJava         : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
                               rxAndroid      : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
                               javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
-                              kotlinStdlib      : "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}",
-                              rxKotlin          : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}"]
+                              kotlinStdlib   : "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}",
+                              rxKotlin       : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}"]
 
   presentationTestDependencies = [mockito          : "org.mockito:mockito-core:${mockitoVersion}",
                                   dexmaker         : "com.google.dexmaker:dexmaker:${dexmakerVersion}",
@@ -73,12 +75,15 @@ ext {
   dataDependencies = [daggerCompiler    : "com.google.dagger:dagger-compiler:${daggerVersion}",
                       dagger            : "com.google.dagger:dagger:${daggerVersion}",
                       okHttp            : "com.squareup.okhttp:okhttp:${okHttpVersion}",
+                      okHttp3           : "com.squareup.okhttp3:okhttp:${okHttp3Version}",
+                      okHttp3Logging    : "com.squareup.okhttp3:logging-interceptor:${okHttp3Version}",
                       gson              : "com.google.code.gson:gson:${gsonVersion}",
                       rxJava            : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
                       rxAndroid         : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
                       javaxAnnotation   : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
                       javaxInject       : "javax.inject:javax.inject:${javaxInjectVersion}",
                       androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}",
+                      retrofit          : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
                       kotlinStdlib      : "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}",
                       rxKotlin          : "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}"]
 

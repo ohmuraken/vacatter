@@ -1,10 +1,10 @@
 package com.fernandocejas.android10.sample.domain.interactor
 
-import com.fernandocejas.android10.sample.domain.Face
 import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread
 import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor
 import com.fernandocejas.android10.sample.domain.repository.FaceRepository
-import io.reactivex.Observable
+import io.reactivex.Completable
+import java.net.URI
 import javax.inject.Inject
 
 /**
@@ -15,11 +15,19 @@ import javax.inject.Inject
  */
 class PostFace @Inject constructor(
     val faceRepository: FaceRepository,
-    val threadExecutor: ThreadExecutor,
-    val postExecutionThread: PostExecutionThread
-) : UseCase<Face, Void>(threadExecutor, postExecutionThread) {
+    override val threadExecutor: ThreadExecutor,
+    override val postExecutionThread: PostExecutionThread
+) : CompletableUseCase<PostFace.Params>(threadExecutor, postExecutionThread) {
 
-  override public fun buildUseCaseObservable(params: Void?): Observable<Face> {
-    return this.faceRepository.face();
+  override fun buildUseCaseCompletable(params: Params): Completable {
+    return this.faceRepository.postFace(params.photo);
+  }
+
+  class Params private constructor(val photo: URI) {
+    companion object {
+      fun forFace(photo: URI): Params {
+        return Params(photo)
+      }
+    }
   }
 }

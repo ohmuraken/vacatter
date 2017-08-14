@@ -1,6 +1,9 @@
 package com.fernandocejas.android10.sample.data.net
 
+import android.media.FaceDetector.Face
+import android.net.Uri
 import com.fernandocejas.android10.sample.data.entity.TweetEntity
+import io.reactivex.Completable
 import io.reactivex.Observable
 
 /**

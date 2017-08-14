@@ -57,10 +57,14 @@ dependencies {
   provided dataDependencies.javaxAnnotation
   compile dataDependencies.javaxInject
   compile dataDependencies.okHttp
+  compile dataDependencies.okHttp3
+  compile dataDependencies.okHttp3Logging
   compile dataDependencies.gson
   compile dataDependencies.rxJava
   compile dataDependencies.rxAndroid
   compile dataDependencies.androidAnnotations
+  compile dataDependencies.retrofit
+  compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
   compile dataDependencies.kotlinStdlib
   compile dataDependencies.rxKotlin
 
