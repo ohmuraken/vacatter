@@ -58,6 +58,10 @@ android {
       signingConfig signingConfigs.debug
     }
   }
+
+  dataBinding {
+    enabled = true
+  }
 }
 
 dependencies {
