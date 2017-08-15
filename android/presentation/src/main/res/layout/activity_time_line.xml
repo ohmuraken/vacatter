@@ -13,12 +13,13 @@
       />
 
   <android.support.design.widget.FloatingActionButton
-      android:id="@+id/btn_pic_regist"
+      android:id="@+id/btn_PicRegister"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_margin="16dp"
       android:src="@drawable/ic_launcher"
-      app:layout_anchor="@id/cardLinear"
-      app:layout_anchorGravity="bottom|right|end" />
+      app:layout_anchor="@id/fragmentContainer"
+      app:layout_anchorGravity="bottom|right|end"
+      />
 
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
