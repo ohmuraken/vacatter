@@ -5,6 +5,7 @@ import com.fernandocejas.android10.sample.presentation.internal.di.modules.Activ
 import com.fernandocejas.android10.sample.presentation.internal.di.modules.UseCaseModule
 import com.fernandocejas.android10.sample.presentation.view.fragment.PostFaceFragment
 import com.fernandocejas.android10.sample.presentation.view.fragment.TweetCardFragment
+import com.fernandocejas.android10.sample.presentation.view.intro.CameraIntro
 import dagger.Component
 
 /**
@@ -25,4 +26,5 @@ import dagger.Component
 public interface UseCaseComponent {
     fun inject(tweetCardFragment: TweetCardFragment)
     fun inject(postFaceFragment: PostFaceFragment)
+    fun inject(cameraIntro: CameraIntro)
 }

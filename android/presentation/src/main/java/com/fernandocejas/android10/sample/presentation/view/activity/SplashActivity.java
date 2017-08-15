@@ -31,15 +31,16 @@ public class SplashActivity extends BaseActivity {
 
         SharedPreferences prefer = getSharedPreferences("twitter", Context.MODE_PRIVATE);
         String token = prefer.getString("token", "");
-        if (status) {
-          if (!token.equals("")) {
-            intent = new Intent(SplashActivity.this, TimeLineActivity.class);
-          } else {
-            intent = new Intent(SplashActivity.this, LoginActivity.class);
-          }
-        } else {
-          intent = new Intent(SplashActivity.this, TutorialActivity.class);
-        }
+        intent = new Intent(SplashActivity.this, TutorialActivity.class);
+        //if (status) {
+        //  if (!token.equals("")) {
+        //    intent = new Intent(SplashActivity.this, TimeLineActivity.class);
+        //  } else {
+        //    intent = new Intent(SplashActivity.this, LoginActivity.class);
+        //  }
+        //} else {
+        //  intent = new Intent(SplashActivity.this, TutorialActivity.class);
+        //}
         startActivity(intent);
         finish();
       }
