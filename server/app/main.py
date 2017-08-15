@@ -147,7 +147,7 @@ def user_timeline():
         res = [remake_json(tweet) for tweet in tweets if "extended_entities" in tweet._json.keys()]
         return jsonify(res)
     else:
-        return "please logoin with twitter"
+        return "no such user"
 
 
 @app.route('/vacatter/api/v1.0/face', methods=['GET', 'POST'])
@@ -160,8 +160,7 @@ def upload_face():
 
         file = request.files['image']
         if file.filename == '':
-            print('No selected file')
-            return redirect(request.url)
+            return 'No selected file'
         if file and allowed_file(file.filename):
             filename = user_id + "_" + secure_filename(file.filename)
             file.save(os.path.join(app.config['FACE_UPLOAD_FOLDER'], filename))
@@ -180,8 +179,8 @@ def upload_face():
         <title>Upload new File</title>
         <h1>Upload new File</h1>
         <form method=post enctype=multipart/form-data>
-          <p><input type=file name=image>
-             <input type=submit value=Upload>
+            <input type=file name=image>
+            <input type=submit value=Upload>
         </form>
     '''
 
