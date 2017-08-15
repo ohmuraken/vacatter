@@ -1,8 +1,6 @@
 package com.fernandocejas.android10.sample.presentation.view.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,11 +12,10 @@ import com.bumptech.glide.Glide;
 import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.view.fragment.SquareHeightFragment;
 
-/**
- * Created by apple on 2017/08/12.
- */
+public class TimeLineActivity extends BaseActivity implements HasComponent<UseCaseComponent> {
 
-public class TimeLineActivity extends BaseActivity {
+  private UseCaseComponent usecaseComponent;
+
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_time_line);
@@ -42,22 +39,21 @@ public class TimeLineActivity extends BaseActivity {
       TextView textBox = (TextView) linearLayout.findViewById(R.id.textBox);
       Button favBtn = (Button) linearLayout.findViewById(R.id.btn_favorite);
 
-      textBox.setText("CardView" + i);
-      cardView.setTag(i);
-      favBtn.setTag(i);
-      cardView.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          Log.d("CLICKED_NUMBER", String.valueOf(v.getTag())+"の詳細ページへのリンク");
-        }
-      });
-      favBtn.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          Log.d("CLICKED_NUMBER", String.valueOf(v.getTag()) + "　に「いいね！」が押されました");
-        }
-      });
-      cardLinear.addView(linearLayout, i);
+    // Generate Object Tree
+    this.initializeInjector();
+    if (savedInstanceState == null) {
+      addFragment(R.id.fragmentContainer, new TweetCardFragment());
     }
+  }
+
+  private void initializeInjector() {
+    this.usecaseComponent = DaggerUseCaseComponent.builder()
+        .applicationComponent(getApplicationComponent())
+        .activityModule(getActivityModule())
+        .build();
+  }
+
+  @Override public UseCaseComponent getComponent() {
+    return usecaseComponent;
   }
 }
