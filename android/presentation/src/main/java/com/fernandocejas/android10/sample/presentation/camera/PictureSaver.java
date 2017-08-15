@@ -2,9 +2,11 @@ package com.fernandocejas.android10.sample.presentation.camera;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
 
+import android.util.Log;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -34,6 +36,11 @@ public class PictureSaver implements Runnable {
         String fileName = String.format(FILE_NAME_TEMPLATE, Calendar.getInstance());
         // 出力先ファイル
         File outputFile = new File(mOutputDir, fileName);
+
+        SharedPreferences data = mContext.getSharedPreferences("DataSave", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = data.edit();
+        editor.putString("picPath", outputFile.getPath().toString());
+        editor.apply();
 
         FileOutputStream output = null;
         try {
