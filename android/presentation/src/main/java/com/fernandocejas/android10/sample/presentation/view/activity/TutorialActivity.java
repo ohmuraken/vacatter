@@ -12,11 +12,8 @@ import com.fernandocejas.android10.sample.presentation.AndroidApplication;
 import com.fernandocejas.android10.sample.presentation.internal.di.HasComponent;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.ApplicationComponent;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.DaggerUseCaseComponent;
-import com.fernandocejas.android10.sample.presentation.internal.di.components.DaggerUserComponent;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.UseCaseComponent;
-import com.fernandocejas.android10.sample.presentation.internal.di.components.UserComponent;
 import com.fernandocejas.android10.sample.presentation.internal.di.modules.ActivityModule;
-import com.fernandocejas.android10.sample.presentation.view.fragment.OneButtonFragment;
 import com.fernandocejas.android10.sample.presentation.view.intro.CameraIntro;
 import com.fernandocejas.android10.sample.presentation.view.intro.TwitterLoginIntro;
 import com.fernandocejas.android10.sample.presentation.view.intro.WelcomeIntro;
@@ -68,11 +65,12 @@ public class TutorialActivity extends AppIntro implements HasComponent<UseCaseCo
     // ログインチェックor画像アップロードチェック
     SharedPreferences shared = getSharedPreferences("twitter", Context.MODE_PRIVATE);
 
-    if(!shared.getBoolean("upload_face", false) ||
-        shared.getString("token", "").equals("") ||
-        shared.getString("secret", "").equals("")){
-      Toast.makeText(getApplicationContext(), "Twitterのログインまたは画像のアップロードが必要です", Toast.LENGTH_LONG).show();
-    }else{
+    if (!shared.getBoolean("upload_face", false)
+        || shared.getString("token", "").equals("")
+        || shared.getString("secret", "").equals("")) {
+      Toast.makeText(getApplicationContext(), "Twitterのログインと画像のアップロードが必要です", Toast.LENGTH_LONG)
+          .show();
+    } else {
       // Do something when users tap on Done button.
       Intent intent = new Intent(this, TimeLineActivity.class);
       startActivity(intent);
