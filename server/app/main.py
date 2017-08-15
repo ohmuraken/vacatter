@@ -207,8 +207,9 @@ def upload_face():
         </form>
     '''
 
-@app.route('/vacatter/api/v1.0/face_url/<user_id>', methods=['GET'])
-def face_url(user_id):
+@app.route('/vacatter/api/v1.0/face_url', methods=['GET'])
+def face_url():
+    user_id = request.args.get("user_id")
     conn = get_db()
     c = conn.cursor()
     sql = "SELECT * FROM users WHERE user_id=?"
