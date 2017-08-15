@@ -26,4 +26,10 @@ interface RestApiService {
   fun tweetEntityList(
       @Query("user_id") user_id: String
   ): Observable<List<TweetEntity>>
+
+  @GET("like")
+  fun likeTweet(
+      @Query("user_id") user_id: String,
+      @Query("favorite_count") like: Int
+  ): Completable
 }

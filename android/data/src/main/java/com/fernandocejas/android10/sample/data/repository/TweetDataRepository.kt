@@ -5,6 +5,7 @@ import com.fernandocejas.android10.sample.data.repository.datasource.TweetDataSt
 import com.fernandocejas.android10.sample.data.repository.datasource.TweetDataStoreFactory
 import com.fernandocejas.android10.sample.domain.Tweet
 import com.fernandocejas.android10.sample.domain.repository.TweetRepository
+import io.reactivex.Completable
 import io.reactivex.Observable
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -22,4 +23,10 @@ import javax.inject.Singleton
     val tweetCloudDataStore: TweetDataStore = tweetDataStoreFactory.createcloudDataStore()
     return tweetCloudDataStore.tweetEntityList().map { this.tweetEntityToDataMapper.transform(it) }
   }
+
+  override fun likes(like: Int): Completable {
+    val tweetCloudDataStore: TweetDataStore = tweetDataStoreFactory.createcloudDataStore()
+    return tweetCloudDataStore.likeTweet(like)
+  }
+
 }

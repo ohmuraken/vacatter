@@ -46,6 +46,10 @@ class RetroApi @Inject constructor() {
     return service.tweetEntityList(user_id)
   }
 
+  fun likeTweet(user_id: String, like: Int): Completable{
+    return service.likeTweet(user_id, like)
+  }
+
   fun getLogginInterceptor(): Interceptor {
     val interceptor = HttpLoggingInterceptor()
     interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
