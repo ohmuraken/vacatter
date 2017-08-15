@@ -32,17 +32,17 @@ class FaceCloudDataStoreTest {
 
   lateinit var faceCloudDataStore: FaceCloudDataStore
 
-  @Before
-  fun setUp() {
-    faceCloudDataStore = FaceCloudDataStore(mockApi, mockDataStoreHelper)
-    given(mockDataStoreHelper.getToken()).willReturn(TEST_TOKEN)
-    given(mockDataStoreHelper.convertFile(mockURI)).willReturn(mockFile)
-    given(mockDataStoreHelper.createRequestFile(mockFile)).willReturn(mockRequestBody)
-    given(mockDataStoreHelper.createMultipartBody(mockFile, mockRequestBody)).willReturn(mockBody)
-  }
-
-  @Test
-  fun testFaceCloudDataStoreHappyCase() {
-    faceCloudDataStore.postFace(mockURI)
-  }
+//  @Before
+//  fun setUp() {
+//    faceCloudDataStore = FaceCloudDataStore(mockApi, mockDataStoreHelper)
+////    given(mockDataStoreHelper.getToken()).willReturn(TEST_TOKEN)
+////    given(mockDataStoreHelper.convertFile(mockURI)).willReturn(mockFile)
+////    given(mockDataStoreHelper.createRequestFile(mockFile)).willReturn(mockRequestBody)
+////    given(mockDataStoreHelper.createMultipartBody(mockFile, mockRequestBody)).willReturn(mockBody)
+//  }
+//
+//  @Test
+//  fun testFaceCloudDataStoreHappyCase() {
+//    faceCloudDataStore.postFace(mockURI)
+//  }
 }
