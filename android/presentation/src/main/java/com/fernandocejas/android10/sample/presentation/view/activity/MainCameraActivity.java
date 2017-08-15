@@ -1,6 +1,8 @@
 package com.fernandocejas.android10.sample.presentation.view.activity;
 
 import android.app.Fragment;
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,6 +20,10 @@ import com.fernandocejas.android10.sample.presentation.camera.PictureFragment;
 
 public class MainCameraActivity extends AppCompatActivity
         implements View.OnClickListener {
+
+  public static Intent getCallingIntent(Context context) {
+    return new Intent(context, MainCameraActivity.class);
+  }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

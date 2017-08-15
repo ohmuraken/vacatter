@@ -18,6 +18,7 @@ import com.fernandocejas.android10.sample.presentation.internal.di.components.Us
 import com.fernandocejas.android10.sample.presentation.presenter.CameraIntroPresenter
 import com.fernandocejas.android10.sample.presentation.presenter.PostFacePresenter
 import com.fernandocejas.android10.sample.presentation.view.LoadDataView
+import com.fernandocejas.android10.sample.presentation.view.activity.MainCameraActivity
 import javax.inject.Inject
 
 
@@ -57,6 +58,13 @@ class CameraIntro : Fragment() {
     super.onViewCreated(view, savedInstanceState)
     cameraIntroPresenter.setView(this)
   }
+
+  @OnClick(R.id.btn_TakePhoto)
+  fun clickButtonTakePhoto() {
+    val intentToLaunch = MainCameraActivity.getCallingIntent(this.context());
+    this.context().startActivity(intentToLaunch)
+  }
+
 
   @OnClick(R.id.btn_PickGallery)
   fun onButtonStorageAccess() {
