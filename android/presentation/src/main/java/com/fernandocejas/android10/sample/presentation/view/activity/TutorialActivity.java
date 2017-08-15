@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import com.fernandocejas.android10.sample.presentation.view.fragment.CameraTutorialFragment;
 import com.fernandocejas.android10.sample.presentation.view.fragment.OneButtonFragment;
 import com.github.paolorotolo.appintro.AppIntro;
 
@@ -20,7 +21,7 @@ public class TutorialActivity extends AppIntro {
 
     // Add your slide fragments here.
     // AppIntro will automatically generate the dots indicator and buttons.
-    addSlide(new OneButtonFragment());
+    addSlide(new CameraTutorialFragment());
     addSlide(new OneButtonFragment());
     addSlide(new OneButtonFragment());
     //addSlide(fourthFragment);
