@@ -214,9 +214,9 @@ def face_url():
     c = conn.cursor()
     sql = "SELECT * FROM users WHERE user_id=?"
     c.execute(sql, (user_id,))
-    result = c.fetchone()
+    result = c.fetchall()
     if len(result):
-        face_url = result[-1]
+        face_url = result[0][-1]
         filename = face_url.rsplit("/")[-1]
         conn.commit()
         conn.close()
