@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="このアプリは顔写真を取る必要があります。いい顔してね"
+      android:textColor="#ff0000"
+      android:textSize="18sp"
+      />
+
+  <Button
+      android:id="@+id/btn_TakePhoto"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="カメラを起動"
+      />
+
+  <Button
+      android:id="@+id/btn_PickGallery"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="ファイルから選ぶ"
+      />
+
+</LinearLayout>

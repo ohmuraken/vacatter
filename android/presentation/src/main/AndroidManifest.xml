@@ -42,7 +42,10 @@
     <activity
         android:name=".view.activity.SplashActivity"
         android:label="@string/activity_title_splash">
-
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
     </activity>
 
     <activity
@@ -55,17 +58,13 @@
         android:name=".view.activity.MainCameraActivity"
         android:label="camera"
         android:theme="@style/Theme.AppCompat">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
-        <category android:name="android.intent.category.LAUNCHER"/>
-      </intent-filter>
     </activity>
 
     <activity
         android:name=".view.activity.TutorialActivity"
         android:label="@string/activity_title_tutrial"
         android:theme="@style/Theme.AppCompat"
-    >
+        >
     </activity>
 
 
