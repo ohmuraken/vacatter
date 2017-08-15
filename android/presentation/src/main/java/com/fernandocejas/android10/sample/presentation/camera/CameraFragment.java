@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.ImageFormat;
 import android.graphics.Matrix;
@@ -27,6 +28,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v13.app.FragmentCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.util.Size;
 import android.view.LayoutInflater;
 import android.view.Surface;
@@ -353,6 +355,9 @@ public class CameraFragment extends Fragment implements View.OnClickListener{
 
             // 画像ファイルとして保存する
             mBackgroundHandler.post(new PictureSaver(getActivity(), data));
+            SharedPreferences mdata = getActivity().getSharedPreferences("DataSave", Context.MODE_PRIVATE);
+            String Level = mdata.getString("picPath","until get");
+            Log.d("PICTURE_PATH",Level);
         }
 
     };
