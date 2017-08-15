@@ -51,7 +51,11 @@ public class LoginActivity extends BaseActivity{
                 SharedPreferences prefer = getSharedPreferences("twitter", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefer.edit();
                 editor.putString("token", session.getAuthToken().token);
+                editor.putString("secret", session.getAuthToken().secret);
+                editor.putLong("user_id", session.getId());
                 editor.apply();
+                Intent intent = new Intent(LoginActivity.this, TimeLineActivity.class);
+                startActivity(intent);
             }
 
             @Override public void failure(TwitterException exception) {
