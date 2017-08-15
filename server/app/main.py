@@ -80,7 +80,6 @@ def remake_json(tweet):
         mention_name = "none"
         mention_screen_name = "none"
 
-
     # 顔変換 TODO
     face_change_count = 0
     face_change_urls = ["none", "none", "none", "none"]
