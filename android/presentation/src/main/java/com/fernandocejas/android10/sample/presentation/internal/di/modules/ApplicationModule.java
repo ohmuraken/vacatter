@@ -19,10 +19,12 @@ import android.content.Context;
 import com.fernandocejas.android10.sample.data.cache.UserCache;
 import com.fernandocejas.android10.sample.data.cache.UserCacheImpl;
 import com.fernandocejas.android10.sample.data.executor.JobExecutor;
+import com.fernandocejas.android10.sample.data.repository.FaceDataRepository;
 import com.fernandocejas.android10.sample.data.repository.TweetDataRepository;
 import com.fernandocejas.android10.sample.data.repository.UserDataRepository;
 import com.fernandocejas.android10.sample.domain.executor.PostExecutionThread;
 import com.fernandocejas.android10.sample.domain.executor.ThreadExecutor;
+import com.fernandocejas.android10.sample.domain.repository.FaceRepository;
 import com.fernandocejas.android10.sample.domain.repository.TweetRepository;
 import com.fernandocejas.android10.sample.domain.repository.UserRepository;
 import com.fernandocejas.android10.sample.presentation.AndroidApplication;
@@ -65,5 +67,9 @@ public class ApplicationModule {
 
   @Provides @Singleton TweetRepository provideTweetRepository(TweetDataRepository tweetDataRepository) {
     return tweetDataRepository;
+  }
+
+  @Provides @Singleton FaceRepository provideFaceRepository(FaceDataRepository faceDataRepository) {
+    return faceDataRepository;
   }
 }

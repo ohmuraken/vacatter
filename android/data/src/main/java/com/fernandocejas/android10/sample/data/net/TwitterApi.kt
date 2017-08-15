@@ -16,7 +16,7 @@ interface TwitterApi {
   @Multipart
   @POST("face")
   fun postFace (
-      @Part token: String,
-      @Part file: MultipartBody.Part
+      @Part user_id: MultipartBody.Part,
+      @Part image: MultipartBody.Part
   ): Completable
 }
