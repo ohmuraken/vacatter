@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,12 +24,12 @@ import javax.inject.Inject
  *
  * Created on 2017/08/15.
  */
-class CameraIntro : BaseFragment() {
+class CameraIntro : Fragment() {
 
   private val READ_REQUEST_CODE: Int = 1001
   @Bind(R.id.btn_TakePhoto) lateinit var btn_TakePhoto: Button
   @Bind(R.id.btn_PickGallery) lateinit var btn_PickGallery: Button
-  @Inject lateinit var postFacePresenter: PostFacePresenter
+//  @Inject lateinit var postFacePresenter: PostFacePresenter
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -56,9 +57,9 @@ class CameraIntro : BaseFragment() {
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
 
-    if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-      postFacePresenter.postFace(data)
-    }
+//    if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+//      postFacePresenter.postFace(data)
+//    }
   }
 
 }

@@ -33,7 +33,7 @@ public class TutorialActivity extends AppIntro {
     // AppIntro will automatically generate the dots indicator and buttons.
     addSlide(new WelcomeIntro());
     addSlide(new TwitterLoginIntro());
-    addSlide(89-new CameraIntro());
+    addSlide(new CameraIntro());
     //addSlide(fourthFragment);
 
     // Instead of fragments, you can also use our default slide
