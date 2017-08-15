@@ -105,28 +105,6 @@ def remake_json(tweet):
     }
     return remaked_json
 
-@app.route("/vacatter/api/v1.0/home_timeline", methods=["GET"])
-def get_timeline():
-    conn = get_db()
-    c = conn.cursor()
-    sql = "SELECT * from timelines"
-    df = pd.read_sql_query(sql, conn)
-    conn.close()
-
-    media_urls_set = []
-    for urls in df["media_urls"]:
-        media_urls_set.append([url.replace("'", "").replace(" ", "") for url in urls[1:-1].split(",")])
-    df["media_urls"] = media_urls_set
-
-    face_change_urls_set = []
-    for urls in df["face_change_urls"]:
-        face_change_urls_set.append([url.replace("'", "").replace(" ", "") for url in urls[1:-1].split(",")])
-    df["face_change_urls"] = face_change_urls_set
-
-    df_json_str = df.to_json(orient="records")
-    df_json = json.loads(df_json_str)
-    return jsonify(df_json)
-
 
 @app.route("/vacatter/api/v1.0/token", methods=["POST"])
 def authorize_token():
