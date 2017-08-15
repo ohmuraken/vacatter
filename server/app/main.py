@@ -161,7 +161,7 @@ def user_timeline():
     c.execute(sql, (user_id,))
     result = c.fetchall()
     if len(result):
-        user_id, access_token, acceess_token_secret = result[0]
+        user_id, access_token, acceess_token_secret = result[0][-1]
         conn.commit()
         conn.close()
         api = authorize(consumer_key, consumer_secret, access_token, access_token_secret)
