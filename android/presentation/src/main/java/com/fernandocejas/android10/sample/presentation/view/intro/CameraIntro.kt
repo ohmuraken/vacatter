@@ -14,8 +14,10 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import com.fernandocejas.android10.sample.presentation.R
 import com.fernandocejas.android10.sample.presentation.internal.di.HasComponent
+import com.fernandocejas.android10.sample.presentation.internal.di.components.UseCaseComponent
+import com.fernandocejas.android10.sample.presentation.presenter.CameraIntroPresenter
 import com.fernandocejas.android10.sample.presentation.presenter.PostFacePresenter
-import com.fernandocejas.android10.sample.presentation.view.fragment.BaseFragment
+import com.fernandocejas.android10.sample.presentation.view.LoadDataView
 import javax.inject.Inject
 
 
@@ -29,10 +31,19 @@ class CameraIntro : Fragment() {
   private val READ_REQUEST_CODE: Int = 1001
   @Bind(R.id.btn_TakePhoto) lateinit var btn_TakePhoto: Button
   @Bind(R.id.btn_PickGallery) lateinit var btn_PickGallery: Button
-//  @Inject lateinit var postFacePresenter: PostFacePresenter
+  @Inject lateinit var cameraIntroPresenter: CameraIntroPresenter
+
+  init {
+    setRetainInstance(true)
+  }
+
+  override fun onAttach(context: Context) {
+    super.onAttach(context)
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    getComponent(UseCaseComponent::class.java).inject(this)
   }
 
   override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
@@ -42,8 +53,9 @@ class CameraIntro : Fragment() {
     return fragmentView
   }
 
-  fun context(): Context {
-    return this.getActivity().getApplicationContext()
+  override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+    cameraIntroPresenter.setView(this)
   }
 
   @OnClick(R.id.btn_PickGallery)
@@ -56,10 +68,22 @@ class CameraIntro : Fragment() {
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
-
-//    if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-//      postFacePresenter.postFace(data)
-//    }
+    if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+      cameraIntroPresenter.postFaceOfIntro(data)
+    }
   }
 
+  /**
+   * For Dagger
+   */
+  fun <C> getComponent(componentType: Class<C>): C {
+    return componentType.cast((this.getActivity() as HasComponent<C>).getComponent())
+  }
+
+  /**
+   * For Dagger
+   */
+  fun context(): Context {
+    return this.getActivity().getApplicationContext()
+  }
 }

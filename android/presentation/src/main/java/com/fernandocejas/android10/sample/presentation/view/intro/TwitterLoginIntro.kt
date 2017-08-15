@@ -79,6 +79,8 @@ class TwitterLoginIntro : Fragment() {
         editor.putString("secret", session.getAuthToken().secret);
         editor.putLong("user_id", session.getId());
         editor.apply();
+
+        btn_LoginTwitter.setEnabled(false)
       }
 
       override fun failure(exception: TwitterException?) {

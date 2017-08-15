@@ -1,11 +1,15 @@
 package com.fernandocejas.android10.sample.presentation.view.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.widget.Toast;
 import com.fernandocejas.android10.sample.presentation.AndroidApplication;
+import com.fernandocejas.android10.sample.presentation.internal.di.HasComponent;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.ApplicationComponent;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.DaggerUseCaseComponent;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.DaggerUserComponent;
@@ -18,7 +22,7 @@ import com.fernandocejas.android10.sample.presentation.view.intro.TwitterLoginIn
 import com.fernandocejas.android10.sample.presentation.view.intro.WelcomeIntro;
 import com.github.paolorotolo.appintro.AppIntro;
 
-public class TutorialActivity extends AppIntro {
+public class TutorialActivity extends AppIntro implements HasComponent<UseCaseComponent> {
 
   private UseCaseComponent usecaseComponent;
 
@@ -34,7 +38,6 @@ public class TutorialActivity extends AppIntro {
     addSlide(new WelcomeIntro());
     addSlide(new TwitterLoginIntro());
     addSlide(new CameraIntro());
-    //addSlide(fourthFragment);
 
     // Instead of fragments, you can also use our default slide
     // Just set a title, description, background and image. AppIntro will do the rest.
@@ -62,10 +65,19 @@ public class TutorialActivity extends AppIntro {
 
   @Override public void onDonePressed(Fragment currentFragment) {
     super.onDonePressed(currentFragment);
-    // Do something when users tap on Done button.
-    Intent intent = new Intent(this, SplashActivity.class);
-    startActivity(intent);
-    finish();
+    // ログインチェックor画像アップロードチェック
+    SharedPreferences shared = getSharedPreferences("twitter", Context.MODE_PRIVATE);
+
+    if(!shared.getBoolean("upload_face", false) ||
+        shared.getString("token", "").equals("") ||
+        shared.getString("secret", "").equals("")){
+      Toast.makeText(getApplicationContext(), "Twitterのログインまたは画像のアップロードが必要です", Toast.LENGTH_LONG).show();
+    }else{
+      // Do something when users tap on Done button.
+      Intent intent = new Intent(this, TimeLineActivity.class);
+      startActivity(intent);
+      finish();
+    }
   }
 
   @Override
