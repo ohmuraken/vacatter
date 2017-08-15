@@ -382,26 +382,20 @@ public class CameraFragment extends Fragment implements View.OnClickListener{
         float centerX = viewRect.centerX();
         float centerY = viewRect.centerY();
 
-        if (Surface.ROTATION_90 == rotation
-                || Surface.ROTATION_270 == rotation) {
-
+        if (Surface.ROTATION_180 == rotation) {
+            matrix.postRotate(180, centerX, centerY);
+        }else{
             // 中心を合わせる
             bufferRect.offset(centerX - bufferRect.centerX(), centerY - bufferRect.centerY());
 
             // TextureView用の矩形を、プレビュー用の矩形に合わせる
             matrix.setRectToRect(viewRect, bufferRect, Matrix.ScaleToFit.FILL);
 
-            // 拡大・縮小率を決定する
-            float scale = Math.max(
-                    (float) viewSize.getHeight() / mCameraInfo.getPictureSize().getHeight(),
-                    (float) viewSize.getWidth() / mCameraInfo.getPictureSize().getWidth());
-
-            // 拡大／縮小を行う
-            matrix.postScale(scale, scale, centerX, centerY);
-            // 回転する
-            matrix.postRotate(90 * (rotation - 2), centerX, centerY);
-        } else if (Surface.ROTATION_180 == rotation) {
-            matrix.postRotate(180, centerX, centerY);
+            if(Surface.ROTATION_90 == rotation
+                || Surface.ROTATION_270 == rotation){
+                // 回転する
+                matrix.postRotate(90 * (rotation - 2), centerX, centerY);
+            }
         }
 
         mTextureView.setTransform(matrix);

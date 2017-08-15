@@ -141,7 +141,7 @@ public class CameraLegacyFragment extends Fragment implements View.OnClickListen
         }
 
         // Cameraへのアクセスを取得する
-        mCamera = Camera.open();
+        mCamera = Camera.open(1);
 
         try {
             // カメラのプレビューの角度を調整する
