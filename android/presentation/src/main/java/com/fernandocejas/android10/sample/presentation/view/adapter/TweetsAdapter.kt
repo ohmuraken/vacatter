@@ -46,12 +46,17 @@ class TweetsAdapter @Inject constructor(
     return TweetViewHolder(view)
   }
 
+  /**
+   * Tweetごとに、テキスト,画像等を割り当てる
+   */
   override fun onBindViewHolder(holder: TweetViewHolder, position: Int) {
     val tweetModel = this.tweetsCollection!![position]
 
     // CardViewBind Text
     holder.title.text = tweetModel.tweetId
-    Glide.with(context).load(tweetModel.faceChangeUrls?.get(0)).into(holder.thumbnail)
+    Glide.with(context).load(tweetModel.faceChangeUrls?.get(0))
+        .fitCenter()
+        .into(holder.thumbnail)
 
     holder.itemView.setOnClickListener {
       if (this.onItemClickListener != null) {
