@@ -1,15 +1,10 @@
 package com.fernandocejas.android10.sample.data.net
 
-import android.content.Context
-import android.net.Uri
 import com.fernandocejas.android10.sample.data.entity.TweetEntity
-import com.fernandocejas.android10.sample.data.entity.mapper.TweetEntityJsonMapper
-import com.fernandocejas.android10.sample.data.exception.NetworkConnectionException
 import io.reactivex.Completable
 import io.reactivex.Observable
 import okhttp3.Interceptor
 import okhttp3.MultipartBody
-import okhttp3.MultipartBody.Part
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -46,7 +41,7 @@ class RetroApi @Inject constructor() {
     return service.tweetEntityList(user_id)
   }
 
-  fun likeTweet(user_id: String, like: Int): Completable{
+  fun likeTweet(user_id: String, like: Int): Completable {
     return service.likeTweet(user_id, like)
   }
 
