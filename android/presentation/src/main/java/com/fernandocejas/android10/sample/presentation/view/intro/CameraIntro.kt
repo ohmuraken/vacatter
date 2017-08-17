@@ -16,8 +16,6 @@ import com.fernandocejas.android10.sample.presentation.R
 import com.fernandocejas.android10.sample.presentation.internal.di.HasComponent
 import com.fernandocejas.android10.sample.presentation.internal.di.components.UseCaseComponent
 import com.fernandocejas.android10.sample.presentation.presenter.CameraIntroPresenter
-import com.fernandocejas.android10.sample.presentation.presenter.PostFacePresenter
-import com.fernandocejas.android10.sample.presentation.view.LoadDataView
 import com.fernandocejas.android10.sample.presentation.view.activity.MainCameraActivity
 import javax.inject.Inject
 
