@@ -72,14 +72,6 @@ public class MainActivity extends BaseActivity {
     this.navigator.navigateToUserList(this);
   }
 
-  @OnClick(R.id.btn_LoadTwitterList) void navigateToLoadTwitterList() {
-    this.navigator.navigateToLoadTwitterList(this);
-  }
-
-  @OnClick(R.id.btn_PostImage) void navigateToPostImage() {
-    this.navigator.navigateToPostImage(this);
-  }
-
   @OnClick(R.id.btn_LoadTimeTine) public void submit(View view) {
     Intent intent = new Intent(MainActivity.this, TimeLineActivity.class);
     startActivity(intent);
