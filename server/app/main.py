@@ -10,6 +10,7 @@ from werkzeug.utils import secure_filename
 from flask import send_from_directory
 import numpy as np
 import cv2
+import urllib
 
 
 UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'uploads/')
