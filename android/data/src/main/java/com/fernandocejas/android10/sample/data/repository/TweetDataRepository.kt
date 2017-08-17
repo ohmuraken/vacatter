@@ -19,14 +19,19 @@ import javax.inject.Singleton
     var tweetDataStoreFactory: TweetDataStoreFactory,
     var tweetEntityToDataMapper: TweetEntityToDataMapper) : TweetRepository {
 
-  override fun tweets(): Observable<List<Tweet>> {
+  override fun token(): Completable {
     val tweetCloudDataStore: TweetDataStore = tweetDataStoreFactory.createcloudDataStore()
-    return tweetCloudDataStore.tweetEntityList().map { this.tweetEntityToDataMapper.transform(it) }
+    return tweetCloudDataStore.postToken()
   }
 
-  override fun likes(like: Int): Completable {
+  override fun tweets(): Observable<List<Tweet>> {
     val tweetCloudDataStore: TweetDataStore = tweetDataStoreFactory.createcloudDataStore()
-    return tweetCloudDataStore.likeTweet(like)
+    return tweetCloudDataStore.getTweetList().map { this.tweetEntityToDataMapper.transform(it) }
+  }
+
+  override fun like(tweetId: String): Completable {
+    val tweetCloudDataStore: TweetDataStore = tweetDataStoreFactory.createcloudDataStore()
+    return tweetCloudDataStore.likeTweet(tweetId)
   }
 
 }

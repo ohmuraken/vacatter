@@ -6,9 +6,6 @@ import com.fernandocejas.android10.sample.domain.repository.TweetRepository
 import io.reactivex.Completable
 import javax.inject.Inject
 
-/**
- * Created by anna on 2017/08/16.
- */
 class LikeTweet @Inject constructor(
     val tweetRepository: TweetRepository,
     override val threadExecutor: ThreadExecutor,
@@ -16,13 +13,13 @@ class LikeTweet @Inject constructor(
 ) : CompletableUseCase<LikeTweet.Params>(threadExecutor, postExecutionThread) {
 
   override fun buildUseCaseCompletable(params: Params): Completable {
-    return this.tweetRepository.likes(params.like);
+    return this.tweetRepository.like(params.tweetId);
   }
 
-  class Params private constructor(val like: Int){
+  class Params private constructor(val tweetId: String){
     companion object {
-      fun forTweet(like: Int): Params {
-        return Params(like)
+      fun forTweet(tweetId: String): Params {
+        return Params(tweetId)
       }
     }
   }

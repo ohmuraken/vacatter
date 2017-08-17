@@ -8,10 +8,13 @@ import io.reactivex.Observable
  * Interface that represents a Repository for getting [Tweet] related data.
  */
 interface TweetRepository {
+
+  fun token(): Completable
+
   /**
    * Get an [Observable] which will emit a List of [Tweet].
    */
   fun tweets(): Observable<List<Tweet>>
 
-  fun likes(like: Int): Completable
+  fun like(tweet_id: String): Completable
 }

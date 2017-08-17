@@ -10,6 +10,7 @@ import io.reactivex.Observable
  * Created on 8/10/17.
  */
 interface TweetDataStore {
-  fun tweetEntityList(): Observable<List<TweetEntity>>
-  fun likeTweet(like: Int): Completable
+  fun postToken(): Completable
+  fun getTweetList(): Observable<List<TweetEntity>>
+  fun likeTweet(tweetId: String): Completable
 }

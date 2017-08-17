@@ -17,19 +17,25 @@ import retrofit2.http.Query
  */
 interface RestApiService {
   @Multipart
-  @POST("face") fun postFace(
+  @POST("face")fun postFace(
       @Part user_id: MultipartBody.Part,
       @Part image: MultipartBody.Part
   ): Completable
 
+  @POST("token") fun postToken(
+      @Part user_id: String,
+      @Part access_token: String,
+      @Part access_token_secret: String
+  ): Completable
+
   @GET("timeline")
-  fun tweetEntityList(
-      @Query("user_id") user_id: String
+  fun getTweetList(
+      @Query("user_id") user_id: String,
+      @Query("count") count: Int
   ): Observable<List<TweetEntity>>
 
-  @GET("like")
-  fun likeTweet(
-      @Query("user_id") user_id: String,
-      @Query("favorite_count") like: Int
+  @POST("like") fun likeTweet(
+      @Part user_id: String,
+      @Part tweet_id: String
   ): Completable
 }

@@ -21,7 +21,7 @@ import javax.inject.Singleton
 @Singleton
 class RetroApi @Inject constructor() {
 
-  val API_BASE_URL: String = "http://mk-azureserver.japaneast.cloudapp.azure.com:5001/vacatter/demo/api/v1/"
+  val API_BASE_URL: String = "http://mk-azureserver.japaneast.cloudapp.azure.com:5000/vacatter/api/v1.0/"
   val service: RestApiService
 
   init {
@@ -33,16 +33,20 @@ class RetroApi @Inject constructor() {
     service = retro.create(RestApiService::class.java)
   }
 
-  fun postFace(user_id: MultipartBody.Part, image: MultipartBody.Part): Completable {
-    return service.postFace(user_id, image)
+  fun postToken(userId: String, accessToken: String, accessTokenSecret: String): Completable {
+    return service.postToken(userId, accessToken, accessTokenSecret)
   }
 
-  fun tweetEntityList(user_id: String): Observable<List<TweetEntity>> {
-    return service.tweetEntityList(user_id)
+  fun postFace(userId: MultipartBody.Part, image: MultipartBody.Part): Completable {
+    return service.postFace(userId, image)
   }
 
-  fun likeTweet(user_id: String, like: Int): Completable {
-    return service.likeTweet(user_id, like)
+  fun tweetEntityList(userId: String): Observable<List<TweetEntity>> {
+    return service.getTweetList(userId, 30)
+  }
+
+  fun likeTweet(userId: String, tweetId: String): Completable {
+    return service.likeTweet(userId, tweetId)
   }
 
   fun getLogginInterceptor(): Interceptor {
