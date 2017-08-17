@@ -26,4 +26,7 @@
   <string name="exception_message_user_not_found">Cannot retrieve user data. Check your internet connection</string>
 
   <string name="button_capture">撮影する</string>
+  <string name="btn_text_select_gallery">フォルダから選ぶ</string>
+  <string name="btn_text_select_camera">カメラを起動</string>
+  <string name="text_register_picture">写真の登録方法を選んでね</string>
 </resources>

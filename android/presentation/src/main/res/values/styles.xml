@@ -37,4 +37,9 @@
     <item name="android:textStyle">bold</item>
   </style>
 
+  <style name="animationName" parent="android:Animation">
+    <item name="android:windowEnterAnimation">@anim/animation_on</item>
+    <item name="android:windowExitAnimation">@anim/animation_off</item>
+  </style>
+
 </resources>
