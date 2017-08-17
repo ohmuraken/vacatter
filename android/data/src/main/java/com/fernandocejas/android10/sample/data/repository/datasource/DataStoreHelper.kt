@@ -17,19 +17,18 @@ import java.net.URI
  * Created on 8/13/17.
  */
 class DataStoreHelper constructor(val context: Context) {
+  val shared = context.getSharedPreferences("twitter", Context.MODE_PRIVATE)
+
   fun getToken(): String {
-    val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-    return preferences.getString("twitter", "token")
+    return shared.getString("token", "")
   }
 
   fun getTokenSecret(): String {
-    val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-    return preferences.getString("twitter", "secret")
+    return shared.getString("secret", "")
   }
 
   fun getUserId(): String {
-    val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-    return preferences.getString("twitter", "user_id")
+    return shared.getString("user_id", "")
   }
 
   fun convertURItoUri(javaURI: URI): Uri {

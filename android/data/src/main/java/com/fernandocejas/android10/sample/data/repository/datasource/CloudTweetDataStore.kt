@@ -24,7 +24,7 @@ class CloudTweetDataStore @Inject constructor(
 
   override fun getTweetList(): Observable<List<TweetEntity>> {
     val user_id: String = helper.getUserId()
-    return this.api.tweetEntityList(user_id)
+    return this.api.getTweetList(user_id)
   }
 
   override fun likeTweet(tweetId: String): Completable {
