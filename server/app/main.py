@@ -189,6 +189,7 @@ def authorize_token():
 @app.route("/vacatter/api/v1.0/timeline", methods=["GET"])
 def user_timeline():
     user_id = request.args.get("user_id")
+    count = request.args.get("count")
     conn = get_db()
     c = conn.cursor()
     sql = "SELECT * FROM users WHERE user_id=?"
@@ -200,7 +201,7 @@ def user_timeline():
         conn.commit()
         conn.close()
         api = authorize(consumer_key, consumer_secret, access_token, access_token_secret)
-        tweets = api.home_timeline(count=100)
+        tweets = api.home_timeline(count=count)
         # res = [remake_json(tweet, face_url) for tweet in tweets if "extended_entities" in tweet._json.keys()]
         res = []
         for tweet in tweets:
