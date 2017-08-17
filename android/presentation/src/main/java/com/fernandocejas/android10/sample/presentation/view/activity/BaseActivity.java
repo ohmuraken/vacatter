@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import com.fernandocejas.android10.sample.domain.interactor.PostFace;
 import com.fernandocejas.android10.sample.presentation.AndroidApplication;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.ApplicationComponent;
 import com.fernandocejas.android10.sample.presentation.internal.di.modules.ActivityModule;
@@ -16,9 +17,9 @@ import javax.inject.Inject;
 public abstract class BaseActivity extends Activity {
 
   @Inject Navigator navigator;
+  @Inject PostFace postFaceUseCase;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
+  @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     this.getApplicationComponent().inject(this);
   }
