@@ -21,5 +21,12 @@
       app:layout_anchor="@id/fragmentContainer"
       app:layout_anchorGravity="bottom|right|end"
       />
+  <RelativeLayout
+      android:id="@+id/bac_dim_layout"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="#C0000000"
+      android:visibility="gone" >
+  </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

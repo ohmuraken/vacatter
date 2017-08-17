@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/time_popup_window"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical" >
 
   <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="このアプリは顔写真を取る必要があります。いい顔してね"
-      android:textColor="#ff0000"
-      android:textSize="18sp"
-      />
-
+      android:text="@string/text_register_picture"
+      android:layout_gravity="center"
+  />
   <Button
-      android:id="@+id/btn_TakePhoto"
+      android:id="@+id/btn_gallery"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="@string/btn_text_select_camera"
-      />
-
-  <Button
-      android:id="@+id/btn_PickGallery"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+      android:layout_gravity="center"
       android:text="@string/btn_text_select_gallery"
-      />
+  />
+  <Button
+      android:id="@+id/btn_camera"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:text="@string/btn_text_select_camera"
+  />
 
 </LinearLayout>
