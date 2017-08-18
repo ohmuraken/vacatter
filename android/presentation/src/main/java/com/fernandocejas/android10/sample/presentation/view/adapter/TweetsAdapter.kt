@@ -53,7 +53,7 @@ class TweetsAdapter @Inject constructor(
     val tweetModel = this.tweetsCollection!![position]
 
     // CardViewBind Text
-    holder.title.text = tweetModel.tweetId
+    holder.title.text = tweetModel.tweetId.toString()
     Glide.with(context).load(tweetModel.faceChangeUrls?.get(0))
         .fitCenter()
         .into(holder.thumbnail)
