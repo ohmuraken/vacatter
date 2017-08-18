@@ -60,7 +60,7 @@ class CameraIntro : Fragment() {
   @OnClick(R.id.btn_TakePhoto)
   fun clickButtonTakePhoto() {
     val intentToLaunch = MainCameraActivity.getCallingIntent(this.context());
-    this.context().startActivity(intentToLaunch)
+    this.context().startActivity(intentToLaunch.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
   }
 
 
