@@ -19,6 +19,9 @@ import com.fernandocejas.android10.sample.presentation.view.TweetCardView
 import com.fernandocejas.android10.sample.presentation.view.adapter.TweetsAdapter
 import com.fernandocejas.android10.sample.presentation.view.adapter.TweetsLayoutManager
 import javax.inject.Inject
+import android.support.v7.widget.DividerItemDecoration
+
+
 
 /**
  *
@@ -140,6 +143,10 @@ class TweetCardFragment : BaseFragment(), TweetCardView {
 //    this.tweetsAdapter.setOnItemClickListener(onItemClickListener)
     this.rv_tweets.setLayoutManager(TweetsLayoutManager(context()))
     this.rv_tweets.setAdapter(tweetsAdapter)
+    val mDividerItemDecoration = DividerItemDecoration(this.rv_tweets.getContext(),
+        TweetsLayoutManager(context()).getOrientation())
+    this.rv_tweets.addItemDecoration(mDividerItemDecoration)
+
   }
 
   /**

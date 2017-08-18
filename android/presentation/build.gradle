@@ -85,6 +85,7 @@ dependencies {
   compile 'com.twitter.sdk.android:tweet-ui:3.1.0'
   compile 'com.twitter.sdk.android:tweet-composer:3.1.0'
   compile 'com.twitter.sdk.android:twitter-mopub:3.1.0'
+  compile 'com.github.chuross:aspect-ratio-imageview:v1.0.2'
 
   androidTestCompile presentationTestDependencies.mockito
   androidTestCompile presentationTestDependencies.dexmaker

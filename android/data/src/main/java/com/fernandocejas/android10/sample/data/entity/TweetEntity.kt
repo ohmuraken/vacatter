@@ -24,6 +24,9 @@ class TweetEntity {
   @SerializedName("user_id")
   var userId: Long = 0
 
+  @SerializedName("screen_name")
+  var screenName: String = ""
+
   @SerializedName("name")
   var name: String = ""
 
