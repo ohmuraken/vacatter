@@ -164,9 +164,9 @@ def remake_json(tweet, face_url):
 
 @app.route("/vacatter/api/v1.0/token", methods=["POST"])
 def authorize_token():
-    access_token = request.json["access_token"]
-    access_token_secret = request.json["access_token_secret"]
-    user_id = request.json["user_id"]
+    access_token = request.form["access_token"]
+    access_token_secret = request.form["access_token_secret"]
+    user_id = request.form["user_id"]
 
     conn = get_db()
     c = conn.cursor()
