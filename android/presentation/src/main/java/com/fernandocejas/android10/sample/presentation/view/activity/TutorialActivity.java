@@ -72,6 +72,9 @@ public class TutorialActivity extends AppIntro implements HasComponent<UseCaseCo
           .show();
     } else {
       // Do something when users tap on Done button.
+      SharedPreferences.Editor editor = shared.edit();
+      editor.putBoolean("complete_tutorial", true);
+      editor.apply();
       Intent intent = new Intent(this, TimeLineActivity.class);
       startActivity(intent);
       finish();

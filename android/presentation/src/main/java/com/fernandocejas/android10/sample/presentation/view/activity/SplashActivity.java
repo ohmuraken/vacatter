@@ -1,6 +1,8 @@
 package com.fernandocejas.android10.sample.presentation.view.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.AppLaunchChecker;
@@ -19,12 +21,13 @@ public class SplashActivity extends BaseActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_splash);
     final boolean status = AppLaunchChecker.hasStartedFromLauncher(this);
+    final SharedPreferences shared = getSharedPreferences("twitter", Context.MODE_PRIVATE);
     AppLaunchChecker.onActivityCreate(this);
 
     execute_intent = new Runnable() {
       @Override public void run() {
 
-        if (status) {
+        if (shared.getBoolean("complete_tutorial", false)) {
           intent = new Intent(SplashActivity.this, TimeLineActivity.class);
         } else {
           intent = new Intent(SplashActivity.this, TutorialActivity.class);
