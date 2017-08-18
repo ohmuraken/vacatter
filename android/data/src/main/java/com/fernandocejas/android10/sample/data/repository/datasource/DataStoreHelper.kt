@@ -1,9 +1,7 @@
 package com.fernandocejas.android10.sample.data.repository.datasource
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.net.Uri
-import android.preference.PreferenceManager
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
