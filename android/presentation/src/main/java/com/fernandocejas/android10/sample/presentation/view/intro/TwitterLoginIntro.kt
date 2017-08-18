@@ -78,6 +78,7 @@ class TwitterLoginIntro : Fragment() {
         editor.putString("token", session.getAuthToken().token);
         editor.putString("secret", session.getAuthToken().secret);
         editor.putLong("user_id", session.getId());
+        editor.putString("user_name", session.getUserName())
         editor.apply();
 
         btn_LoginTwitter.setEnabled(false)

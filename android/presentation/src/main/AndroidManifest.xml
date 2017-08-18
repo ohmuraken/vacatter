@@ -48,11 +48,11 @@
       </intent-filter>
     </activity>
 
-    <activity
-        android:name=".view.activity.TweetCardActivity"
-        android:label="@string/activity_title_user_list">
-    </activity>
-    <activity android:name=".view.activity.PostFaceActivity"/>
+    <!--<activity-->
+        <!--android:name=".view.activity.TweetCardActivity"-->
+        <!--android:label="@string/activity_title_user_list">-->
+    <!--</activity>-->
+    <!--<activity android:name=".view.activity.PostFaceActivity"/>-->
 
     <activity
         android:name=".view.activity.MainCameraActivity"
@@ -66,6 +66,12 @@
         android:theme="@style/Theme.AppCompat"
         >
     </activity>
+
+    <activity
+        android:name=".view.activity.ChatBotActivity"
+        android:label="Chat Bot">
+    </activity>
+
 
 
   </application>

@@ -26,6 +26,7 @@ public class TimeLineActivity extends BaseActivity implements HasComponent<UseCa
 
   private UseCaseComponent usecaseComponent;
   @Bind(R.id.btn_PicRegister) FloatingActionButton btn_PicRegist;
+  @Bind(R.id.btn_StartChat) FloatingActionButton btn_StartChat;
   @Bind(R.id.bac_dim_layout) RelativeLayout backDimLayout;
 
   protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +82,12 @@ public class TimeLineActivity extends BaseActivity implements HasComponent<UseCa
     popupWin.setFocusable(true);
     popupWin.setAnimationStyle(R.style.animationName);
     popupWin.showAtLocation(popLayout, Gravity.CENTER, 0, 0);
+  }
+
+  @OnClick(R.id.btn_StartChat)
+  void clickStartChat(){
+    Intent intent = new Intent(this.getApplicationContext(), ChatBotActivity.class);
+    startActivity(intent);
   }
 
   private void initializeInjector() {

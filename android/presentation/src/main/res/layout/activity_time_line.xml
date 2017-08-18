@@ -21,6 +21,15 @@
       app:layout_anchor="@id/fragmentContainer"
       app:layout_anchorGravity="bottom|right|end"
       />
+  <android.support.design.widget.FloatingActionButton
+      android:id="@+id/btn_StartChat"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_margin="16dp"
+      android:src="@drawable/ic_icon_vacatter"
+      app:layout_anchor="@id/fragmentContainer"
+      app:layout_anchorGravity="bottom|left|end"
+  />
   <RelativeLayout
       android:id="@+id/bac_dim_layout"
       android:layout_width="match_parent"
