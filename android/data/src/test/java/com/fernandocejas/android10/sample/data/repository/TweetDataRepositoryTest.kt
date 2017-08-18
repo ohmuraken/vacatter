@@ -41,9 +41,9 @@ class TweetDataRepositoryTest {
   fun testGetTweetsHappyCase() {
     val tweetsList: List<TweetEntity> = mutableListOf()
     val tweetEntity = TweetEntity()
-    tweetEntity.tweetId = "AAAA"
+    tweetEntity.tweetId = 10
     tweetsList.plus(tweetEntity)
-    given(mockCloudTweetDataStore.tweetEntityList()).willReturn(Observable.just(tweetsList))
+    given(mockCloudTweetDataStore.getTweetList()).willReturn(Observable.just(tweetsList))
 
     tweetDataRepository.tweets()
   }

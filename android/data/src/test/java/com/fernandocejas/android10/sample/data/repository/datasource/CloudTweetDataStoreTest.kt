@@ -29,8 +29,8 @@ class CloudTweetDataStoreTest {
 
   @Test
   fun testGetTweetListFromApi() {
-    cloudTweetDataStore!!.tweetEntityList()
-    verify(mockApi).tweetEntityList("USER_ID")
+    cloudTweetDataStore!!.getTweetList()
+    verify(mockApi).getTweetList("USER_ID")
   }
 }
 
