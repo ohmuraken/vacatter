@@ -25,14 +25,14 @@ def authorize(consumer_key, consumer_secret, access_token, access_token_secret):
 # Response用のJsonを作る
 def gen_tweet(id, media_urls, favorite_count, retweet_count, user_id, name, retweeted, favorited, text):
     return {
-        "id": id,
+        "tweet_id": id,
         "media_urls": media_urls,
         "favorite_count": favorite_count,
         "retweet_count": retweet_count,
         "user_id": user_id,
         "name": name,
-        "retweeted": retweeted,
-        "favorited": favorited,
+        "retweeted": 1 if retweeted else 0,
+        "favorited": 1 if favorited else 0,
         "text": text,
         "face_change_urls": media_urls
     }
@@ -57,7 +57,6 @@ def authorize_token():
 @app.route("/vacatter/demo/api/v1/timeline", methods=["GET"])
 def get_timeline():
     res = []
-    print(request.args["user_id"])
     api = authorize(consumer_key, consumer_secret, access_token, access_token_secret)
     # for status in api.home_timeline(count=20):
     for tweet_res in api.home_timeline(count=100, exclude_replies=True, include_entities=False):
@@ -66,11 +65,11 @@ def get_timeline():
         if "extended_entities" not in tweet:
             continue
         res.append(gen_tweet(
-            id=tweet['id_str'],
+            id=tweet['id'],
             media_urls=extract_media_url(tweet["extended_entities"]["media"]),
             favorite_count=tweet["favorite_count"],
             retweet_count=tweet["retweet_count"],
-            user_id=tweet["user"]["id_str"],
+            user_id=tweet["user"]["id"],
             name=tweet["user"]["name"],
             retweeted=tweet["retweeted"],
             favorited=tweet["favorited"],
