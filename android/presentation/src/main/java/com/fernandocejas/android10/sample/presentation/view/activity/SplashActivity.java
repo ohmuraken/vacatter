@@ -24,11 +24,11 @@ public class SplashActivity extends BaseActivity {
     execute_intent = new Runnable() {
       @Override public void run() {
 
-        //if (status) {
-        //  intent = new Intent(SplashActivity.this, TimeLineActivity.class);
-        //} else {
+        if (status) {
+          intent = new Intent(SplashActivity.this, TimeLineActivity.class);
+        } else {
           intent = new Intent(SplashActivity.this, TutorialActivity.class);
-        //}
+        }
         startActivity(intent);
         finish();
       }

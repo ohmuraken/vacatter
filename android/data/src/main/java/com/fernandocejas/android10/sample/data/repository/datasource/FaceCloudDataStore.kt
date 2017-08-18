@@ -18,11 +18,10 @@ class FaceCloudDataStore constructor(val api: RetroApi,
 
   override fun postFace(photo: URI): Completable {
     val uri: Uri = helper.convertURItoUri(photo)
-    print(uri.lastPathSegment)
     val stream: InputStream = helper.convertUriToInputStream(uri)
     val requestFile = helper.createRequestBody(stream)
 
-    val imageBody = helper.createMultipardBody("image", "image.jpg", requestFile)
+    val imageBody = helper.createMultipardBody("image", helper.getFileName(uri), requestFile)
     val tokenBody = MultipartBody.Part.createFormData("user_id", helper.getUserId())
 
     return this.api.postFace(tokenBody, imageBody)
