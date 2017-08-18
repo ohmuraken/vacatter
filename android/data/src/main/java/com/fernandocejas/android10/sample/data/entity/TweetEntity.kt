@@ -9,8 +9,8 @@ import com.google.gson.annotations.SerializedName
  */
 class TweetEntity {
 
-  @SerializedName("id")
-  var tweetId: String = ""
+  @SerializedName("tweet_id")
+  var tweetId: Long = 0
 
   @SerializedName("media_urls")
   var mediaUrls: List<String> = listOf<String>()
@@ -22,16 +22,16 @@ class TweetEntity {
   var retweetCount: Int = 0
 
   @SerializedName("user_id")
-  var userId: String = ""
+  var userId: Long = 0
 
   @SerializedName("name")
   var name: String = ""
 
   @SerializedName("retweeted")
-  var favorited: Boolean = false
+  var favorited: Int = 0
 
   @SerializedName("favorited")
-  var retweeted: Boolean = false
+  var retweeted: Int = 0
 
   @SerializedName("text")
   var text: String = ""
