@@ -20,6 +20,7 @@ class TweetEntityToDataMapper @Inject constructor() {
     tweet.retweetCount = tweetEntity.retweetCount
     tweet.userId = tweetEntity.userId
     tweet.name = tweetEntity.name
+    tweet.screenName = tweetEntity.screenName
     tweet.favorited = tweetEntity.favorited
     tweet.retweeted = tweetEntity.retweeted
     tweet.text = tweetEntity.text
