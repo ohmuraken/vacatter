@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import butterknife.Bind
 import butterknife.ButterKnife
 import butterknife.OnClick
@@ -28,8 +29,8 @@ import javax.inject.Inject
 class CameraIntro : Fragment() {
 
   private val READ_REQUEST_CODE: Int = 1001
-  @Bind(R.id.btn_TakePhoto) lateinit var btn_TakePhoto: Button
-  @Bind(R.id.btn_PickGallery) lateinit var btn_PickGallery: Button
+  @Bind(R.id.img_TakePhoto) lateinit var img_TakePhoto: ImageButton
+  @Bind(R.id.img_PickGallery) lateinit var img_PickGallery: ImageButton
   @Inject lateinit var cameraIntroPresenter: CameraIntroPresenter
 
   init {
@@ -57,15 +58,14 @@ class CameraIntro : Fragment() {
     cameraIntroPresenter.setView(this)
   }
 
-  @OnClick(R.id.btn_TakePhoto)
-  fun clickButtonTakePhoto() {
+  @OnClick(R.id.img_TakePhoto)
+  fun clickImageButtonTakePhoto() {
     val intentToLaunch = MainCameraActivity.getCallingIntent(this.context());
     this.context().startActivity(intentToLaunch.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
   }
 
-
-  @OnClick(R.id.btn_PickGallery)
-  fun onButtonStorageAccess() {
+  @OnClick(R.id.img_PickGallery)
+  fun onImageButtonStorageAccess() {
     val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
     intent.addCategory(Intent.CATEGORY_OPENABLE)
     intent.type = "image/*"
