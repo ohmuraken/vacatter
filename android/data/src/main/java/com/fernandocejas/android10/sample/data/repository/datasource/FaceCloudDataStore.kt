@@ -30,7 +30,7 @@ class FaceCloudDataStore constructor(val api: RetroApi,
       fileName = uri.toString()!!.split('/').last()
     } else {
       stream = helper.convertUriToInputStream(uri)
-      fileName = helper.getUserId()
+      fileName = helper.getFileName(uri)
     }
     val requestFile = helper.createRequestBody(stream)
 
