@@ -7,7 +7,8 @@ import java.util.Random
 import javax.inject.Inject
 import android.net.NetworkInfo
 import android.net.ConnectivityManager
-
+import android.os.Handler
+import android.util.Log
 
 
 /**
@@ -17,9 +18,8 @@ import android.net.ConnectivityManager
 class CustomChatBot : ChatBot() {
 
   companion object {
+    var reply = "ウェイ"
     fun customTalk(username: String, message: String, context: Context): String? {
-
-      //ネットに繋がっていない時
       var reply:String? = "hello"
       if(!netWorkCheck(context)){
         val messages = arrayOfNulls<String>(5)
@@ -31,10 +31,14 @@ class CustomChatBot : ChatBot() {
         reply = messages[rnd.nextInt(4)]
       }else{
         APIHelper.getApiResponce(message, context);
-        var data = context.getSharedPreferences("Docomo", Context.MODE_PRIVATE)
-        reply = data.getString("response", "えらー");
+        val sendDelay = 3000
+        Handler().postDelayed({ setText(context); }, sendDelay.toLong())
+        Log.d("REPLY_MESSAGE", "get text:" + reply)
       }
 
+
+
+      Log.d("REPLY_MESSAGE", "reply text:" + reply)
       return reply
     }
 
@@ -46,6 +50,13 @@ class CustomChatBot : ChatBot() {
       } else {
         return false
       }
+    }
+
+    fun setText(context: Context) :String?{
+      var data = context.getSharedPreferences("Docomo", Context.MODE_PRIVATE)
+      reply = data.getString("response", "えらー");
+      Log.d("REPLY_MESSAGE", "set text:" + reply)
+      return reply
     }
   }
 }

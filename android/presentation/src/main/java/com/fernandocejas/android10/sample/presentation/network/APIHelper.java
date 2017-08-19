@@ -62,6 +62,7 @@ public class APIHelper extends APIHelperBase {
         if (response.code() == 200) {
           if (response.body() != null) {
             Log.d("API_RESPONCE", response.body().getUtt());
+            Log.d("REPLY_MESSAGE", "save text:" + response.body().getUtt());
             SharedPreferences data =
                 app_context.getSharedPreferences("Docomo", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = data.edit();
