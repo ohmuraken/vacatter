@@ -99,7 +99,24 @@ class ChatBotActivity : BaseActivity() {
       var receivedMessage = Message.Builder()
           .setUser(you)
           .setRightMessage(false)
-          .setMessageText(CustomChatBot.customTalk(me.name, message.messageText, this.applicationContext))
+
+
+      if(message.messageText.contains("ばかったー") || message.messageText.contains("バカッター")){
+        var data = this.applicationContext.getSharedPreferences("Docomo", Context.MODE_PRIVATE)
+        val editor = data.edit()
+        editor.putString("response", "バカッターじゃねえ！バケッターだ！！")
+        editor.apply()
+        receivedMessage.setMessageText("hello")
+      } else if(message.messageText.contains("バケッター") || message.messageText.contains("ばけったー")){
+        var data = this.applicationContext.getSharedPreferences("Docomo", Context.MODE_PRIVATE)
+        val editor = data.edit()
+        editor.putString("response",
+            "僕の両親に当たる田舎の民のみんなが「summer vacation」 と「顔が化ける」の意味を合わせてVacatterと名付けてくれたんだ。「バカッター」と読み間違えられるけと、読み方は「バケッター」だよ！")
+        editor.apply()
+      } else{
+        receivedMessage.setMessageText(CustomChatBot.customTalk(me.name, message.messageText, this.applicationContext))
+      }
+
       // This is a demo bot
       // Return within 3 seconds
       Handler().postDelayed({
