@@ -37,7 +37,7 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-def authorize(consumer_key, consumer_secret, access_token, access_token_secret):
+def twitter_authorize(consumer_key, consumer_secret, access_token, access_token_secret):
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
     api = tweepy.API(auth)
@@ -166,7 +166,12 @@ def remake_json(tweet, face_url):
 def authorize_token():
     access_token = request.form["access_token"]
     access_token_secret = request.form["access_token_secret"]
-    user_id = request.form["user_id"]
+    user_id = int(request.form["user_id"])
+    print("====== type(request.form['user_id'])".format(type(request.form["user_id"])))
+
+    print("======= user_id: {} ======".format(user_id))
+    print("======= access_token: {} ======".format(access_token))
+    print("======= access_token_secret: {} =======".format(access_token_secret))
 
     conn = get_db()
     c = conn.cursor()
@@ -188,19 +193,34 @@ def authorize_token():
 
 @app.route("/vacatter/api/v1.0/timeline", methods=["GET"])
 def user_timeline():
-    user_id = request.args.get("user_id")
-    count = request.args.get("count")
+    user_id = int(request.args.get("user_id"))
+    count = int(request.args.get("count"))
+    print("=== user_id: {}".format(user_id))
+    print("=== type(user_id): {}".format(type(user_id)))
+    print("=== count: {}".format(count))
+    print("=== type(count): {}".format(type(count)))
     conn = get_db()
     c = conn.cursor()
     sql = "SELECT * FROM users WHERE user_id=?"
     c.execute(sql, (user_id,))
     result = c.fetchall()
+    print("=== result: {}".format(result))
     if len(result):
-        user_id, access_token, acceess_token_secret, face_url = result[0]
-        print("face_url: {}".format(face_url))
+        user_id = result[0][0]
+        access_token = result[0][1]
+        access_token_secret = result[0][2]
+        face_url = result[0][3]
+        print(" ~~~~~~~ RETRY ~~~~~~~~~")
+        print("=== user_id: {}".format(user_id))
+        print("-- type(user_id): {}".format(type(user_id)))
+        print("=== access_token: {}".format(access_token))
+        print("-- type(access_token): {}".format(type(access_token)))
+        print("=== access_token_secret: {}".format(access_token_secret))
+        print("-- type(access_token_secret): {}".format(type(access_token_secret)))
+        print("=== face_url: {}".format(face_url))
         conn.commit()
         conn.close()
-        api = authorize(consumer_key, consumer_secret, access_token, access_token_secret)
+        api = twitter_authorize(consumer_key, consumer_secret, access_token, access_token_secret)
         tweets = api.home_timeline(count=count)
         # res = [remake_json(tweet, face_url) for tweet in tweets if "extended_entities" in tweet._json.keys()]
         res = []
@@ -217,19 +237,24 @@ def user_timeline():
 @app.route('/vacatter/api/v1.0/face', methods=['GET', 'POST'])
 def upload_face():
     if request.method == 'POST':
-        user_id = request.form["user_id"]
+        user_id = request.form["user_id"]	
+        print("======= user_id: {} ======".format(user_id))
         # check if the post request has the file part
         if 'image' not in request.files:
             return redirect(request.url)
-
+        # print("======= request.values: {} =======".format()
         file = request.files['image']
+        print("======= request.files['image']: {} =======".format(file))
+        print("======= request.files['image'].filename: {} =======".format(file.filename))
+        print("======= type(request.files['image']: {} =======".format(type(file)))
         if file.filename == '':
             return 'No selected file'
         if file and allowed_file(file.filename):
             filename = user_id + "_" + secure_filename(file.filename)
+            print("======= filename: {} ======".format(filename))
             file.save(os.path.join(app.config['FACE_UPLOAD_FOLDER'], filename))
             face_url = os.path.join("http://", request.host, "your_face", filename)
-
+            print("======= face_url: {} ======".format(face_url))
             conn = get_db()
             c = conn.cursor()
             sql = "UPDATE users SET face_url=? WHERE user_id=?"
