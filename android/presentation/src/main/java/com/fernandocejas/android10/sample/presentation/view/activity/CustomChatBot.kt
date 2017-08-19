@@ -31,8 +31,7 @@ class CustomChatBot : ChatBot() {
         reply = messages[rnd.nextInt(4)]
       }else{
         APIHelper.getApiResponce(message, context);
-        val sendDelay = 3000
-        Handler().postDelayed({ setText(context); }, sendDelay.toLong())
+        reply = setText(context)
         Log.d("REPLY_MESSAGE", "get text:" + reply)
       }
 
