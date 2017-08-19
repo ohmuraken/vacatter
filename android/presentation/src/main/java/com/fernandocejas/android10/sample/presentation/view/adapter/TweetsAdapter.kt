@@ -11,6 +11,7 @@ import android.widget.TextView
 import butterknife.Bind
 import butterknife.ButterKnife
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.fernandocejas.android10.sample.presentation.R
 import com.fernandocejas.android10.sample.presentation.model.TweetModel
 import com.fernandocejas.android10.sample.presentation.presenter.CameraIntroPresenter
@@ -61,6 +62,8 @@ class TweetsAdapter @Inject constructor(
     holder.userName.setText(tweetModel.name)
     holder.tweetText.setText(tweetModel.text)
     Glide.with(context).load(tweetModel.faceChangeUrls?.get(0))
+        .diskCacheStrategy( DiskCacheStrategy.NONE )
+        .skipMemoryCache(true)
         .fitCenter()
         .into(holder.tweetImage)
 
