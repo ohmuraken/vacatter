@@ -1,6 +1,7 @@
 package com.fernandocejas.android10.sample.presentation.view.activity;
 
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -32,8 +33,8 @@ import java.net.URI;
 public class TimeLineActivity extends BaseActivity implements HasComponent<UseCaseComponent> {
 
   private int READ_REQUEST_CODE = 1001;
+  private int CAMERA_REQUEST_CODE = 1002;
   private String TAG = TimeLineActivity.class.getName();
-
 
   private UseCaseComponent usecaseComponent;
   protected PopupWindow popupWin;
@@ -70,9 +71,8 @@ public class TimeLineActivity extends BaseActivity implements HasComponent<UseCa
 
     cameraButton.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
-        Intent intent = MainCameraActivity.getCallingIntent(getApplicationContext());
-        startActivity(intent);
-        Log.d("CLICKED_BUTTON", "camera!");
+        Intent intentToLaunch = MainCameraActivity.getCallingIntent(getApplicationContext());
+        startActivityForResult(intentToLaunch, CAMERA_REQUEST_CODE);
       }
     });
     galleryButton.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +98,7 @@ public class TimeLineActivity extends BaseActivity implements HasComponent<UseCa
   @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
     if (data != null) {
-      if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+      if ((requestCode == READ_REQUEST_CODE || requestCode == CAMERA_REQUEST_CODE)&& resultCode == Activity.RESULT_OK) {
         popupWin.dismiss();
         Uri uri = data.getData();
         if (uri != null) {
@@ -127,6 +127,10 @@ public class TimeLineActivity extends BaseActivity implements HasComponent<UseCa
       SharedPreferences.Editor editor = prefer.edit();
       editor.putBoolean("upload_face", true);
       editor.apply();
+      FragmentTransaction transaction = getFragmentManager().beginTransaction();
+      transaction.replace(R.id.fragmentContainer, new TweetCardFragment());
+      transaction.addToBackStack(null);
+      transaction.commit();
     }
 
     @Override public void onError(Throwable e) {
