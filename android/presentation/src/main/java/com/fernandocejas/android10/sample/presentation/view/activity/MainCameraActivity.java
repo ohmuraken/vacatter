@@ -1,88 +1,111 @@
 package com.fernandocejas.android10.sample.presentation.view.activity;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.os.Build;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
+import android.os.Environment;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.Toast;
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.fernandocejas.android10.sample.presentation.R;
-import com.fernandocejas.android10.sample.presentation.camera.CameraFragment;
-import com.fernandocejas.android10.sample.presentation.camera.CameraLegacyFragment;
-import com.fernandocejas.android10.sample.presentation.camera.PictureFragment;
+import com.github.florent37.camerafragment.CameraFragment;
+import com.github.florent37.camerafragment.CameraFragmentApi;
+import com.github.florent37.camerafragment.configuration.Configuration;
+import com.github.florent37.camerafragment.listeners.CameraFragmentResultAdapter;
+import com.github.florent37.camerafragment.widgets.CameraSettingsView;
+import com.github.florent37.camerafragment.widgets.CameraSwitchView;
+import com.github.florent37.camerafragment.widgets.FlashSwitchView;
+import com.github.florent37.camerafragment.widgets.RecordButton;
+import java.util.Calendar;
 
-public class MainCameraActivity extends AppCompatActivity
-        implements View.OnClickListener {
+/**
+ * Use https://github.com/florent37/CameraFragment
+ */
+public class MainCameraActivity extends AppCompatActivity {
+
+  public static final String FRAGMENT_TAG = "camera";
+  private static final String FILE_NAME_TEMPLATE = "image-%1$tF-%1$tH-%1$tM-%1$tS-%1$tL";
+  @Bind(R.id.settings_view) CameraSettingsView settingsView;
+  @Bind(R.id.flash_switch_view) FlashSwitchView flashSwitchView;
+  @Bind(R.id.front_back_camera_switcher) CameraSwitchView cameraSwitchView;
+  @Bind(R.id.record_button) RecordButton recordButton;
 
   public static Intent getCallingIntent(Context context) {
     return new Intent(context, MainCameraActivity.class);
   }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_camera);
+  @Override protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main_camera);
+    ButterKnife.bind(this);
 
-        // 本日の日付文字列
-        String date = String.format("%1$tF", System.currentTimeMillis());
+    final Configuration.Builder builder = new Configuration.Builder();
+    builder.setCamera(Configuration.CAMERA_FACE_FRONT).setFlashMode(Configuration.FLASH_MODE_ON);
+    CameraFragment cameraFragment = CameraFragment.newInstance(builder.build());
+    getSupportFragmentManager().beginTransaction()
+        .replace(R.id.content, cameraFragment, FRAGMENT_TAG)
+        .commit();
 
-        // ギャラリーフラグメントを生成する
-        PictureFragment pictureFragment = PictureFragment.newInstance(date);
+    ActionBar actionBar = getSupportActionBar();
+    if (actionBar != null) {
+      actionBar.setDisplayHomeAsUpEnabled(false);
+      actionBar.setHomeButtonEnabled(false);
+    }
+  }
 
-        // 両フラグメントを追加する
-        getFragmentManager().beginTransaction()
-                .replace(R.id.GalleryContainer, pictureFragment)
-                .commit();
+  @Override protected void onPostCreate(Bundle savedInstanceState) {
+    super.onPostCreate(savedInstanceState);
+  }
 
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeButtonEnabled(true);
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    return super.onOptionsItemSelected(item);
+  }
+
+  @OnClick(R.id.flash_switch_view) public void onFlashSwitcClicked() {
+    final CameraFragmentApi cameraFragment = getCameraFragment();
+    if (cameraFragment != null) {
+      cameraFragment.toggleFlashMode();
+    }
+  }
+
+  @OnClick(R.id.front_back_camera_switcher) public void onSwitchCameraClicked() {
+    final CameraFragmentApi cameraFragment = getCameraFragment();
+    if (cameraFragment != null) {
+      cameraFragment.switchCameraTypeFrontBack();
+    }
+  }
+
+  @OnClick(R.id.record_button) public void onRecordButtonClicked() {
+    final CameraFragmentApi cameraFragment = getCameraFragment();
+    if (cameraFragment != null) {
+      cameraFragment.takePhotoOrCaptureVideo(new CameraFragmentResultAdapter() {
+        @Override public void onPhotoTaken(byte[] bytes, String filePath) {
+          Toast.makeText(getBaseContext(), "onPhotoTaken " + filePath, Toast.LENGTH_SHORT).show();
+
+          Intent intent = new Intent();
+          intent.setData(Uri.parse(filePath));
+
+          setResult(RESULT_OK, intent);
+          finish();
         }
-
-        findViewById(R.id.CameraButton).setOnClickListener(this);
+      }, getApplication().getExternalFilesDir(Environment.DIRECTORY_PICTURES).getPath(), String.format(FILE_NAME_TEMPLATE, Calendar.getInstance()));
     }
+  }
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
+  @OnClick(R.id.settings_view)
+  public void onSettingsClicked() {
+    final CameraFragmentApi cameraFragment = getCameraFragment();
+    if (cameraFragment != null) {
+      cameraFragment.openSettingDialog();
     }
+  }
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onClick(View v) {
-        // 「撮影する」ボタンが押された
-        if (v.getId() == R.id.CameraButton) {
-            Fragment cameraFragment;
-
-            // カメラフラグメントを表示する
-            if (Build.VERSION.SDK_INT > 21) {
-                cameraFragment = new CameraFragment();
-            } else {
-                cameraFragment = new CameraLegacyFragment();
-            }
-
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.CameraContainer, cameraFragment)
-                    .addToBackStack(null) // バックスタックに入れることで、戻るキーで戻れる
-                    .commit();
-
-        }
-    }
+  private CameraFragmentApi getCameraFragment() {
+    return (CameraFragmentApi) getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG);
+  }
 }

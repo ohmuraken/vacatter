@@ -6,7 +6,6 @@ import com.fernandocejas.android10.sample.presentation.internal.di.modules.UseCa
 import com.fernandocejas.android10.sample.presentation.view.fragment.TweetCardFragment
 import com.fernandocejas.android10.sample.presentation.view.intro.CameraIntro
 import com.fernandocejas.android10.sample.presentation.view.intro.TwitterLoginIntro
-import com.fernandocejas.android10.sample.presentation.view.intro.`TwitterLoginIntro$$ViewBinder`
 import dagger.Component
 
 /**

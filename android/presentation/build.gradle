@@ -87,6 +87,7 @@ dependencies {
   compile 'com.twitter.sdk.android:twitter-mopub:3.1.0'
   compile 'com.github.chuross:aspect-ratio-imageview:v1.0.2'
   compile 'com.github.amlcurran.showcaseview:library:5.4.1'
+  compile 'com.github.florent37:camerafragment:1.0.8'
 
   androidTestCompile presentationTestDependencies.mockito
   androidTestCompile presentationTestDependencies.dexmaker
