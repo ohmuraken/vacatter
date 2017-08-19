@@ -66,17 +66,13 @@
         android:id="@+id/BackgroundImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@color/tw__composer_black"
-        app:ariv_widthRatio="8"
-        app:ariv_heightRatio="5"/>
+        android:src="@color/tw__composer_black"/>
 
     <com.github.chuross.AspectRatioImageView
         android:id="@+id/TweetImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxHeight="200dp"
-        app:ariv_widthRatio="8"
-        app:ariv_heightRatio="5"
+        android:maxHeight="600dp"
         app:srcCompat="@drawable/ic_icon_vacatter"
         />
   </FrameLayout>
