@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">Android Clean Architecture</string>
+  <string name="app_name">vacatter</string>
   <string name="url">http://www.android10.org/</string>
 
   <string name="activity_title_user_list">Users List</string>
@@ -27,6 +27,6 @@
 
   <string name="button_capture">撮影する</string>
   <string name="btn_text_select_gallery">フォルダから選ぶ</string>
-  <string name="btn_text_select_camera">カメラを起動</string>
+  <string name="btn_text_select_camera">カメラを起動する</string>
   <string name="text_register_picture">写真の登録方法を選んでね</string>
 </resources>

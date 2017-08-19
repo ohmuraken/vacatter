@@ -4,6 +4,7 @@ import com.fernandocejas.android10.sample.data.entity.TweetEntity
 import com.fernandocejas.android10.sample.data.net.RetroApi
 import io.reactivex.Completable
 import io.reactivex.Observable
+import okhttp3.MultipartBody
 import javax.inject.Inject
 
 /**
@@ -16,9 +17,9 @@ class CloudTweetDataStore @Inject constructor(
 
   override fun postToken(): Completable {
     return this.api.postToken(
-        helper.getUserId(),
-        helper.getToken(),
-        helper.getTokenSecret()
+        MultipartBody.Part.createFormData("user_id", helper.getUserId()),
+        MultipartBody.Part.createFormData("access_token", helper.getToken()),
+        MultipartBody.Part.createFormData("access_token_secret", helper.getTokenSecret())
     )
   }
 

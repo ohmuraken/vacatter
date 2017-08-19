@@ -2,29 +2,66 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     >
 
-  <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="このアプリは顔写真を取る必要があります。いい顔してね"
-      android:textColor="#ff0000"
-      android:textSize="18sp"
+  <ImageView
+      android:layout_width="match_parent"
+      android:layout_height="300dp"
+      android:layout_gravity="top"
+      android:src="@drawable/tutorial_3_a"
       />
 
-  <Button
-      android:id="@+id/btn_TakePhoto"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/btn_text_select_camera"
-      />
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="70dp"
+      android:orientation="vertical"
+      >
+    <ImageButton
+        android:id="@+id/img_TakePhoto"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        android:src="@drawable/camera_icon"
+        />
+    <TextView
+        android:id="@+id/txt_TakePhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/dark_gray"
+        android:text="@string/btn_text_select_camera"
+        />
 
-  <Button
-      android:id="@+id/btn_PickGallery"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/btn_text_select_gallery"
-      />
+  </LinearLayout>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      >
+    <ImageButton
+        android:id="@+id/img_PickGallery"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        android:src="@drawable/folder_icon"
+        />
+    <TextView
+        android:id="@+id/txt_PickGallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/dark_gray"
+        android:text="@string/btn_text_select_gallery"
+        />
+
+  </LinearLayout>
+
 
 </LinearLayout>
