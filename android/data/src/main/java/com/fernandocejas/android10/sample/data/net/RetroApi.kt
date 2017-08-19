@@ -37,7 +37,7 @@ class RetroApi @Inject constructor() {
     service = retro.create(RestApiService::class.java)
   }
 
-  fun postToken(userId: String, accessToken: String, accessTokenSecret: String): Completable {
+  fun postToken(userId: MultipartBody.Part, accessToken: MultipartBody.Part, accessTokenSecret: MultipartBody.Part): Completable {
     return service.postToken(userId, accessToken, accessTokenSecret)
   }
 

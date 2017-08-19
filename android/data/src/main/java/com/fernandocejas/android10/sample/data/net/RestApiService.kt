@@ -22,10 +22,11 @@ interface RestApiService {
       @Part image: MultipartBody.Part
   ): Completable
 
+  @Multipart
   @POST("token") fun postToken(
-      @Part user_id: String,
-      @Part access_token: String,
-      @Part access_token_secret: String
+      @Part user_id: MultipartBody.Part,
+      @Part access_token: MultipartBody.Part,
+      @Part access_token_secret: MultipartBody.Part
   ): Completable
 
   @GET("timeline")
