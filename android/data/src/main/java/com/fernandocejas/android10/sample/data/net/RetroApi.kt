@@ -46,7 +46,7 @@ class RetroApi @Inject constructor() {
   }
 
   fun getTweetList(userId: String): Observable<List<TweetEntity>> {
-    return service.getTweetList(userId, 50)
+    return service.getTweetList(userId, 30)
   }
 
   fun likeTweet(userId: String, tweetId: String): Completable {
