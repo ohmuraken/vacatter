@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -25,7 +26,9 @@ import com.fernandocejas.android10.sample.presentation.R;
 import com.fernandocejas.android10.sample.presentation.internal.di.HasComponent;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.DaggerUseCaseComponent;
 import com.fernandocejas.android10.sample.presentation.internal.di.components.UseCaseComponent;
+import com.fernandocejas.android10.sample.presentation.presenter.CameraIntroPresenter;
 import com.fernandocejas.android10.sample.presentation.view.fragment.TweetCardFragment;
+import com.fernandocejas.android10.sample.presentation.view.intro.CameraIntro;
 import io.reactivex.observers.DisposableCompletableObserver;
 import java.net.URI;
 
@@ -104,9 +107,20 @@ public class TimeLineActivity extends BaseActivity implements HasComponent<UseCa
         if (uri != null) {
           postFaceUseCase.execute(new PostFaceOfIntroCompletable(),
               PostFace.Params.Companion.forFace(URI.create(uri.toString())));
+          //ここに書く
+          reload();
         }
       }
     }
+  }
+
+  public void reload() {
+    Intent intent = getIntent();
+    overridePendingTransition(0, 0);
+    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+    finish();
+    overridePendingTransition(0, 0);
+    startActivity(intent);
   }
 
   private void initializeInjector() {
