@@ -1,52 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     >
 
-  <android.support.v7.widget.CardView
-      android:id="@+id/card_view"
+  <RelativeLayout
+      android:id="@+id/TweetHeaderLayout"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:layout_margin="5dp"
-      card_view:cardCornerRadius="2dp"
-      card_view:contentPadding="0dp"
-      card_view:cardBackgroundColor="@color/white"
+      android:layout_marginBottom="16dp"
+      android:layout_marginEnd="13dp"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="16dp"
       >
 
-    <RelativeLayout
+    <ImageView
+        android:id="@+id/ProfileImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ex_profile"
+        />
+
+    <TextView
+        android:id="@+id/UserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/ProfileImage"
+        android:text="UserName"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/UserId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_toEndOf="@+id/UserName"
+        android:text="UserId"
+        android:textColor="#505050"
+        />
+
+    <TextView
+        android:id="@+id/TweetText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/UserName"
+        android:layout_toEndOf="@+id/ProfileImage"
+        android:textColor="#212121"
+        />
+  </RelativeLayout>
+
+  <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      >
+
+    <com.github.chuross.AspectRatioImageView
+        android:id="@+id/BackgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@color/tw__composer_black"
+        app:ariv_widthRatio="8"
+        app:ariv_heightRatio="5"/>
+
+    <com.github.chuross.AspectRatioImageView
+        android:id="@+id/TweetImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        android:maxHeight="200dp"
+        app:ariv_widthRatio="8"
+        app:ariv_heightRatio="5"
+        app:srcCompat="@drawable/ic_icon_vacatter"
+        />
+  </FrameLayout>
 
-      <ImageView
-          android:id="@+id/thumbnail"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_alignParentTop="true"
-          android:contentDescription="TODO"
-          android:adjustViewBounds="true"
-          android:maxHeight="450dp"
 
-          />
+  <RelativeLayout
+      android:id="@+id/TweetFooterLayout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="9dp"
+      android:layout_marginEnd="15dp"
+      android:layout_marginStart="16dp"
+      android:layout_marginTop="9dp"
+      >
 
-      <TextView
-          android:id="@+id/title"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_below="@+id/thumbnail"
-          android:maxLines="3"
-          android:padding="8dp"
-          android:textColor="#222"
-          android:textSize="22dp"
-          android:textStyle="bold"
-          />
+    <ImageView
+        android:id="@+id/FavoriteIcon"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_favorite_black_18dp"
+        />
 
-    </RelativeLayout>
-  </android.support.v7.widget.CardView>
-
+  </RelativeLayout>
 
 </LinearLayout>

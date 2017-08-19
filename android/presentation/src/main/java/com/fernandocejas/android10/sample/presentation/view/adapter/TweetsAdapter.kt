@@ -2,6 +2,7 @@ package com.fernandocejas.android10.sample.presentation.view.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,8 @@ import butterknife.ButterKnife
 import com.bumptech.glide.Glide
 import com.fernandocejas.android10.sample.presentation.R
 import com.fernandocejas.android10.sample.presentation.model.TweetModel
+import com.fernandocejas.android10.sample.presentation.presenter.CameraIntroPresenter
+import org.w3c.dom.Text
 import javax.inject.Inject
 
 /**
@@ -21,6 +24,7 @@ import javax.inject.Inject
  */
 class TweetsAdapter @Inject constructor(
     val context: Context) : RecyclerView.Adapter<TweetsAdapter.TweetViewHolder>() {
+  private val TAG = TweetsAdapter::class.java.getName()
 
   interface OnItemClickListener {
     fun onTweetItemClicked(tweetModel: TweetModel)
@@ -52,11 +56,13 @@ class TweetsAdapter @Inject constructor(
   override fun onBindViewHolder(holder: TweetViewHolder, position: Int) {
     val tweetModel = this.tweetsCollection!![position]
 
-    // CardViewBind Text
-    holder.title.text = tweetModel.tweetId.toString()
+    val screenName: String = "@" + tweetModel.screenName
+    holder.userId.setText(screenName)
+    holder.userName.setText(tweetModel.name)
+    holder.tweetText.setText(tweetModel.text)
     Glide.with(context).load(tweetModel.faceChangeUrls?.get(0))
         .fitCenter()
-        .into(holder.thumbnail)
+        .into(holder.tweetImage)
 
     holder.itemView.setOnClickListener {
       if (this.onItemClickListener != null) {
@@ -86,8 +92,10 @@ class TweetsAdapter @Inject constructor(
   }
 
   public class TweetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    @Bind(R.id.thumbnail) lateinit var thumbnail: ImageView
-    @Bind(R.id.title) lateinit var title: TextView
+    @Bind(R.id.UserName) lateinit var userName: TextView
+    @Bind(R.id.UserId) lateinit var userId: TextView
+    @Bind(R.id.TweetImage) lateinit var tweetImage: ImageView
+    @Bind(R.id.TweetText) lateinit var tweetText: TextView
 
     init {
       ButterKnife.bind(this, itemView)

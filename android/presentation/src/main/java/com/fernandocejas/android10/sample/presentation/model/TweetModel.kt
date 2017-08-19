@@ -12,6 +12,7 @@ class TweetModel(val tweetId: Long?) {
   var retweetCount: Int? = 0
   var userId: Long? = null
   var name: String? = null
+  var screenName: String? = null
   var favorited: Int? = 0
   var retweeted: Int? = 0
   var text: String? = null

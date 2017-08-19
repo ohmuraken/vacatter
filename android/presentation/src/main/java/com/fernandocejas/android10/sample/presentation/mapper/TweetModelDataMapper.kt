@@ -25,6 +25,7 @@ import javax.inject.Inject
     tweetModel.retweetCount = tweet.retweetCount
     tweetModel.userId = tweet.userId
     tweetModel.name = tweet.name
+    tweetModel.screenName = tweet.screenName
     tweetModel.favorited = tweet.favorited
     tweetModel.retweeted = tweet.retweeted
     tweetModel.text = tweet.text
