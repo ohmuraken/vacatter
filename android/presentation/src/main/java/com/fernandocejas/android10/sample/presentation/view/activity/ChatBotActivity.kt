@@ -139,12 +139,18 @@ class ChatBotActivity : BaseActivity() {
           }
         }
         Log.d("BITMAP", bitmap.toString())
+        val imageResponse = Message.Builder()
+            .setUser(you)
+            .setRightMessage(false)
+            .setMessageText("お、画像を投稿したね？変換して返すよ！")
+            .build()
         val imageMessage = Message.Builder()
             .setUser(you)
             .setRightMessage(false)
             .setPicture(bitmap)
             .setType(Message.Type.PICTURE)
             .build()
+        mChatView!!.receive(imageResponse)
         Handler().postDelayed({
           mChatView!!.receive(imageMessage)
         }, 3000)

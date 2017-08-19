@@ -51,8 +51,18 @@ public class APIHelper extends APIHelperBase {
     final String APIKEY =
         "33564d64434f423342786a474970644f785434706c4652344441477373415955462e7554326c61594c5332";
     final Context app_context = context;
+    SharedPreferences twitter = context.getSharedPreferences("twitter", Context.MODE_PRIVATE);
+    String userName = twitter.getString("user_name", "me");
+    SharedPreferences docomo = context.getSharedPreferences("Docomo", Context.MODE_PRIVATE);
+    String docomo_context = docomo.getString("docomo_context", "");
+    String mode = docomo.getString("mode", "dialog");
     HashMap<String, String> hashMap = new HashMap<>();
     hashMap.put("utt", utt);
+    hashMap.put("t", "30");
+    hashMap.put("nickname", userName);
+    hashMap.put("sex", "男");
+    hashMap.put("mode", mode);
+    hashMap.put("context", docomo_context);
     Call<DocomoApiResponse> call = APIHelper.getAPI().postApiResponce(APIKEY, hashMap);
 
     call.enqueue(new Callback<DocomoApiResponse>() {
@@ -63,10 +73,12 @@ public class APIHelper extends APIHelperBase {
           if (response.body() != null) {
             Log.d("API_RESPONCE", response.body().getUtt());
             Log.d("REPLY_MESSAGE", "save text:" + response.body().getUtt());
-            SharedPreferences data =
+            SharedPreferences docomo =
                 app_context.getSharedPreferences("Docomo", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = data.edit();
+            SharedPreferences.Editor editor = docomo.edit();
             editor.putString("response", response.body().getUtt());
+            editor.putString("docomo_context",response.body().getContext());
+            editor.putString("mode", response.body().getMode());
             editor.apply();
           }
         } else {
