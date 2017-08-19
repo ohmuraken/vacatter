@@ -85,6 +85,7 @@ dependencies {
   compile 'com.twitter.sdk.android:tweet-ui:3.1.0'
   compile 'com.twitter.sdk.android:tweet-composer:3.1.0'
   compile 'com.twitter.sdk.android:twitter-mopub:3.1.0'
+  compile 'com.github.amlcurran.showcaseview:library:5.4.1'
 
   androidTestCompile presentationTestDependencies.mockito
   androidTestCompile presentationTestDependencies.dexmaker
