@@ -42,7 +42,7 @@ public class TutorialActivity extends AppIntro implements HasComponent<UseCaseCo
 
     // OPTIONAL METHODS
     // Override bar/separator color.
-    setBarColor(Color.parseColor("#3F51B5"));
+    setBarColor(Color.parseColor("#55acee"));
     setSeparatorColor(Color.parseColor("#2196F3"));
 
     // Hide Skip/Done button.
@@ -53,6 +53,8 @@ public class TutorialActivity extends AppIntro implements HasComponent<UseCaseCo
     // NOTE: you will probably need to ask VIBRATE permission in Manifest.
     setVibrate(true);
     setVibrateIntensity(30);
+
+    setFadeAnimation();
   }
 
   @Override public void onSkipPressed(Fragment currentFragment) {
