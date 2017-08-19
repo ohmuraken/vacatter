@@ -31,13 +31,7 @@ class CustomChatBot : ChatBot() {
         reply = messages[rnd.nextInt(4)]
       }else{
         APIHelper.getApiResponce(message, context);
-        reply = setText(context)
-        Log.d("REPLY_MESSAGE", "get text:" + reply)
       }
-
-
-
-      Log.d("REPLY_MESSAGE", "reply text:" + reply)
       return reply
     }
 
@@ -49,13 +43,6 @@ class CustomChatBot : ChatBot() {
       } else {
         return false
       }
-    }
-
-    fun setText(context: Context) :String?{
-      var data = context.getSharedPreferences("Docomo", Context.MODE_PRIVATE)
-      reply = data.getString("response", "えらー");
-      Log.d("REPLY_MESSAGE", "set text:" + reply)
-      return reply
     }
   }
 }

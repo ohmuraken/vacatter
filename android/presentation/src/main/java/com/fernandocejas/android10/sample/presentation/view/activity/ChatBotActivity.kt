@@ -9,6 +9,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.content.ContextCompat
+import android.util.Log
 import android.view.View
 import com.fernandocejas.android10.sample.presentation.R
 import com.github.bassaer.chatmessageview.models.Message
@@ -73,19 +74,28 @@ class ChatBotActivity : BaseActivity() {
       mChatView!!.send(message)
       //Reset edit text
       mChatView!!.inputText = ""
-
       //Receive message
-      val receivedMessage = Message.Builder()
+      var receivedMessage = Message.Builder()
           .setUser(you)
           .setRightMessage(false)
           .setMessageText(CustomChatBot.customTalk(me.name, message.messageText, this.applicationContext))
-          .build()
-
       // This is a demo bot
       // Return within 3 seconds
-      val sendDelay = (Random().nextInt(4) + 1) * 2000
-      Handler().postDelayed({ mChatView!!.receive(receivedMessage) }, sendDelay.toLong())
+      Handler().postDelayed({
+        receivedMessage
+            .setMessageText(updateTalk(this.applicationContext))
+            .build()
+      }, 2000)
+
+      Handler().postDelayed({ mChatView!!.receive(receivedMessage.build())
+      }, 3000)
     }
 
+  }
+
+  fun updateTalk(context: Context): String? {
+    var data = context.getSharedPreferences("Docomo", Context.MODE_PRIVATE)
+    val reply = data.getString("response", "えらー");
+    return reply
   }
 }
