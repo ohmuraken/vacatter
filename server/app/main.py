@@ -333,7 +333,7 @@ def favorited():
     else:
         res = "Why else..."
     print("---- create_favorite res: {}".format(res))
-    return josonify({"status": "ok"})
+    return jsonify({"status": "ok"})
 
 @app.route('/your_face/<filename>', methods=['GET'])
 def uploaded_face(filename):
