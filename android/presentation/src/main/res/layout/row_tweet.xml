@@ -93,7 +93,7 @@
         android:layout_width="33dp"
         android:layout_height="33dp"
         android:layout_alignParentEnd="true"
-        android:src="@drawable/ic_favorite_black_18dp"
+        android:src="@drawable/ic_favorite_border_black_18dp"
         />
 
   </RelativeLayout>

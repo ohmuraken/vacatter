@@ -61,6 +61,33 @@ class TweetsAdapter @Inject constructor(
     holder.userId.setText(screenName)
     holder.userName.setText(tweetModel.name)
     holder.tweetText.setText(tweetModel.text)
+    if(tweetModel.favorited==1){
+      holder.favoriteIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_icon_favorite_true))
+
+    }else{
+      holder.favoriteIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_icon_favorite_false))
+
+    }
+
+    holder.favoriteIcon.setOnClickListener {
+      Log.d("LIKE_CLICK", tweetModel.tweetId.toString())
+      Log.d("FAVORITE_STATUS", "button=" + holder.favoriteIcon.drawable.toString() +
+          " black=" + context.getResources().getDrawable(R.drawable.ic_favorite_black_18dp) +
+          " white=" + context.getResources().getDrawable(R.drawable.ic_favorite_border_black_18dp)
+      )
+      if(tweetModel.favorited == 1){
+        tweetModel.favorited = 0
+        holder.favoriteIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_icon_favorite_false))
+      }else{
+        tweetModel.favorited = 1
+        holder.favoriteIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_icon_favorite_true))
+      }
+
+//        holder.favoriteIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_favorite_black_18dp))
+//        holder.favoriteIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_favorite_border_black_18dp))
+
+    }
+
     Glide.with(context).load(tweetModel.faceChangeUrls?.get(0))
         .diskCacheStrategy( DiskCacheStrategy.NONE )
         .skipMemoryCache(true)
@@ -70,7 +97,9 @@ class TweetsAdapter @Inject constructor(
     holder.itemView.setOnClickListener {
       if (this.onItemClickListener != null) {
         this.onItemClickListener!!.onTweetItemClicked(tweetModel)
+
       }
+
     }
   }
 
@@ -99,6 +128,7 @@ class TweetsAdapter @Inject constructor(
     @Bind(R.id.UserId) lateinit var userId: TextView
     @Bind(R.id.TweetImage) lateinit var tweetImage: ImageView
     @Bind(R.id.TweetText) lateinit var tweetText: TextView
+    @Bind(R.id.FavoriteIcon) lateinit var favoriteIcon: ImageView
 
     init {
       ButterKnife.bind(this, itemView)
