@@ -1,6 +1,7 @@
 package com.fernandocejas.android10.sample.presentation.view.adapter
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +15,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.fernandocejas.android10.sample.presentation.R
 import com.fernandocejas.android10.sample.presentation.model.TweetModel
+import com.fernandocejas.android10.sample.presentation.network.APIHelper
+import com.fernandocejas.android10.sample.presentation.network.APIHelper2
 import com.fernandocejas.android10.sample.presentation.presenter.CameraIntroPresenter
 import org.w3c.dom.Text
 import javax.inject.Inject
@@ -71,17 +74,17 @@ class TweetsAdapter @Inject constructor(
 
     holder.favoriteIcon.setOnClickListener {
       Log.d("LIKE_CLICK", tweetModel.tweetId.toString())
-      Log.d("FAVORITE_STATUS", "button=" + holder.favoriteIcon.drawable.toString() +
-          " black=" + context.getResources().getDrawable(R.drawable.ic_favorite_black_18dp) +
-          " white=" + context.getResources().getDrawable(R.drawable.ic_favorite_border_black_18dp)
-      )
+
       if(tweetModel.favorited == 1){
         tweetModel.favorited = 0
         holder.favoriteIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_icon_favorite_false))
       }else{
         tweetModel.favorited = 1
         holder.favoriteIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_icon_favorite_true))
+
       }
+
+      APIHelper2.getApiResponce(tweetModel.tweetId.toString(),context, tweetModel.favorited.toString())
 
 //        holder.favoriteIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_favorite_black_18dp))
 //        holder.favoriteIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_favorite_border_black_18dp))
