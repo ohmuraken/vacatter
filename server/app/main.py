@@ -304,6 +304,36 @@ def face_url():
         conn.close()
         return "no face"
 
+@app.route('/vacatter/api/v1.0/favorited', methods=['POST'])
+def favorited():
+    user_id = int(request.json["user_id"]) # int
+    tweet_id = int(request.json["tweet_id"]) # int
+    favorited = int(request.json["favorited"]) # bool
+    print("--- user_id: {}".format(user_id))
+    print("--- type(user_id): {}".format(type(user_id)))
+    print("--- tweet_id: {}".format(tweet_id))
+    print("--- type(tweet_id): {}".format(type(tweet_id)))
+    print("--- favorited: {}".format(favorited))
+    print("--- type(favorited): {}".format(type(favorited)))
+    conn = get_db()
+    c = conn.cursor()
+    sql = "SELECT * FROM users WHERE user_id=?"
+    c.execute(sql, (user_id,))
+    result = c.fetchall()
+    user_id = result[0][0]
+    access_token = result[0][1]
+    access_token_secret = result[0][2]
+    conn.commit()
+    conn.close()
+    api = twitter_authorize(consumer_key, consumer_secret, access_token, access_token_secret)
+    if favorited == 1:
+        res = api.create_favorite(tweet_id)
+    elif favorited == 0:
+        res = api.destroy_favorite(tweet_id)
+    else:
+        res = "Why else..."
+    print("---- create_favorite res: {}".format(res))
+    return josonify({"status": "ok"})
 
 @app.route('/your_face/<filename>', methods=['GET'])
 def uploaded_face(filename):
