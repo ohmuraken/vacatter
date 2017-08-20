@@ -80,6 +80,7 @@ class TwitterLoginIntro : Fragment() {
         val editor: SharedPreferences.Editor = prefer.edit();
         editor.putString("token", session.getAuthToken().token);
         editor.putString("secret", session.getAuthToken().secret);
+        editor.putString("user_name", session.getUserName())
         editor.putString("user_id", session.getId().toString());
         editor.apply();
         btn_LoginTwitter.setEnabled(false)

@@ -47,7 +47,6 @@
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
-
     <activity
         android:name=".view.activity.MainCameraActivity"
         android:label="camera"
@@ -60,6 +59,12 @@
         android:theme="@style/Theme.AppCompat"
         >
     </activity>
+
+    <activity
+        android:name=".view.activity.ChatBotActivity"
+        android:label="Chat Bot">
+    </activity>
+
 
 
   </application>
