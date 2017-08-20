@@ -237,7 +237,7 @@ def user_timeline():
 @app.route('/vacatter/api/v1.0/face', methods=['GET', 'POST'])
 def upload_face():
     if request.method == 'POST':
-        user_id = request.form["user_id"]	
+        user_id = request.form["user_id"]
         print("======= user_id: {} ======".format(user_id))
         # check if the post request has the file part
         if 'image' not in request.files:
@@ -252,8 +252,19 @@ def upload_face():
         if file and allowed_file(file.filename):
             filename = user_id + "_" + secure_filename(file.filename)
             print("======= filename: {} ======".format(filename))
-            file.save(os.path.join(app.config['FACE_UPLOAD_FOLDER'], filename))
+            face_path = os.path.join(app.config['FACE_UPLOAD_FOLDER'], filename)
             face_url = os.path.join("http://", request.host, "your_face", filename)
+            face_img = cv2.imdecode(np.fromstring(request.files["image"].stream.read(), np.uint8), cv2.IMREAD_COLOR)
+            face_img_gray = cv2.cvtColor(face_img, cv2.COLOR_BGR2GRAY)
+            face_cascade =  cv2.CascadeClassifier(app.config['FACE_CASCADE_DATA'])
+            base_faces = face_cascade.detectMultiScale(face_img_gray, 1.3, 5)
+            if len(base_faces):
+                print("---- check face!")
+                x, y, w, h = base_faces[0]
+                face_img = face_img[y:y+h, x:x+w]
+                cv2.imwrite(face_path, face_img)
+            else:
+                file.save(face_path)
             print("======= face_url: {} ======".format(face_url))
             conn = get_db()
             c = conn.cursor()
@@ -262,6 +273,7 @@ def upload_face():
             conn.commit()
             conn.close()
             return json.dumps({"face_url": face_url})
+        return "you have no image"
 
     return '''
         <!doctype html>
