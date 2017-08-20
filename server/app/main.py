@@ -264,7 +264,7 @@ def upload_face():
                 face_img = face_img[y:y+h, x:x+w]
                 cv2.imwrite(face_path, face_img)
             else:
-                file.save(face_path)
+                cv2.imwrite(face_path, face_img)
             print("======= face_url: {} ======".format(face_url))
             conn = get_db()
             c = conn.cursor()
