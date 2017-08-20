@@ -50,14 +50,12 @@
     <activity
         android:name=".view.activity.MainCameraActivity"
         android:label="camera"
-        android:theme="@style/Theme.AppCompat">
+        android:theme="@style/ThemeFullscreen" >
     </activity>
 
     <activity
         android:name=".view.activity.TutorialActivity"
-        android:label="@string/activity_title_tutrial"
-        android:theme="@style/Theme.AppCompat"
-        >
+        android:label="@string/activity_title_tutrial">
     </activity>
 
     <activity

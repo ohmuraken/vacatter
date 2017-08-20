@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +30,7 @@ import javax.inject.Inject
 class CameraIntro : Fragment() {
 
   private val READ_REQUEST_CODE: Int = 1001
+  private val CAMERA_REQUEST_CODE: Int = 1002
   @Bind(R.id.img_TakePhoto) lateinit var img_TakePhoto: ImageButton
   @Bind(R.id.img_PickGallery) lateinit var img_PickGallery: ImageButton
   @Inject lateinit var cameraIntroPresenter: CameraIntroPresenter
@@ -61,7 +63,7 @@ class CameraIntro : Fragment() {
   @OnClick(R.id.img_TakePhoto)
   fun clickImageButtonTakePhoto() {
     val intentToLaunch = MainCameraActivity.getCallingIntent(this.context());
-    this.context().startActivity(intentToLaunch.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+    startActivityForResult(intentToLaunch, CAMERA_REQUEST_CODE)
   }
 
   @OnClick(R.id.img_PickGallery)
@@ -74,7 +76,7 @@ class CameraIntro : Fragment() {
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
-    if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+    if ((requestCode == READ_REQUEST_CODE  || requestCode == CAMERA_REQUEST_CODE )&& resultCode == Activity.RESULT_OK) {
       cameraIntroPresenter.postFaceOfIntro(data)
     }
   }

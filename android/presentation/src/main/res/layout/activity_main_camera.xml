@@ -1,43 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-  <RelativeLayout
-      android:id="@+id/MainContainer"
+  <FrameLayout
+      android:id="@+id/content"
       android:layout_width="match_parent"
-      android:layout_height="match_parent">
+      android:layout_height="match_parent"/>
 
-    <!-- 写真ギャラリーを入れるコンテナ -->
-    <FrameLayout
-        android:id="@+id/GalleryContainer"
+  <RelativeLayout
+      android:id="@+id/cameraLayout"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      >
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-    <!-- 撮影ボタン -->
-    <Button
-        android:id="@+id/CameraButton"
-        android:layout_width="wrap_content"
-        android:layout_height="64dp"
-        android:paddingStart="48dp"
-        android:paddingEnd="48dp"
-        android:text="@string/button_capture"
-        android:layout_alignParentBottom="true"
+        android:layout_height="60dp"
         android:layout_alignParentEnd="true"
-        android:layout_margin="16dp"
-        android:gravity="center"
-        android:elevation="4dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:paddingTop="10dp">
 
-    <!-- カメラフラグメントを入れるコンテナ -->
-    <FrameLayout
-        android:id="@+id/CameraContainer"
+      <com.github.florent37.camerafragment.widgets.CameraSettingsView
+          android:id="@+id/settings_view"
+          android:layout_width="40dp"
+          android:layout_height="40dp"
+          android:layout_alignParentLeft="true"
+          android:layout_centerVertical="true"
+          android:layout_marginLeft="15dp"
+          />
+
+      <com.github.florent37.camerafragment.widgets.FlashSwitchView
+          android:id="@+id/flash_switch_view"
+          android:layout_width="40dp"
+          android:layout_height="40dp"
+          android:layout_centerInParent="true" />
+
+      <com.github.florent37.camerafragment.widgets.CameraSwitchView
+          android:id="@+id/front_back_camera_switcher"
+          android:layout_width="40dp"
+          android:layout_height="40dp"
+          android:layout_alignParentRight="true"
+          android:layout_centerVertical="true"
+          android:layout_marginRight="15dp"
+          />
+
+    </RelativeLayout>
+
+    <!--android:background="#82000000"-->
+    <RelativeLayout
+        android:id="@+id/record_panel"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:elevation="8dp"/>
+        android:layout_height="150dp"
+        android:background="@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+      <com.github.florent37.camerafragment.widgets.RecordButton
+          android:id="@+id/record_button"
+          android:layout_width="75dp"
+          android:layout_height="75dp"
+          android:layout_centerInParent="true"
+          android:layout_marginLeft="50dp"
+          android:layout_marginRight="50dp" />
+
+      <TextView
+          android:id="@+id/record_duration_text"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerVertical="true"
+          android:layout_toLeftOf="@id/record_button"
+          android:textColor="@android:color/white"
+          android:textSize="14dp"
+          android:visibility="invisible" />
+
+      <TextView
+          android:id="@+id/record_size_mb_text"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerVertical="true"
+          android:layout_toRightOf="@id/record_button"
+          android:textColor="@android:color/white"
+          android:textSize="14dp"
+          android:visibility="invisible" />
+
+
+    </RelativeLayout>
 
   </RelativeLayout>
 
-
-</RelativeLayout>
+</FrameLayout>
