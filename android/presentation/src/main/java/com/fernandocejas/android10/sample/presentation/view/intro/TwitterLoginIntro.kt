@@ -74,7 +74,6 @@ class TwitterLoginIntro : Fragment() {
         val session: TwitterSession = result.data
         val msg: String = "@" + session.getUserName() + "logged in! (#" + session.getUserId() + ")"
         Toast.makeText(context(), msg, Toast.LENGTH_LONG).show();
-
         val prefer: SharedPreferences = context().getSharedPreferences("twitter",
             Context.MODE_PRIVATE);
         val editor: SharedPreferences.Editor = prefer.edit();
