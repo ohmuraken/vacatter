@@ -30,10 +30,10 @@ class TweetEntity {
   @SerializedName("name")
   var name: String = ""
 
-  @SerializedName("retweeted")
+  @SerializedName("favorited")
   var favorited: Int = 0
 
-  @SerializedName("favorited")
+  @SerializedName("retweeted")
   var retweeted: Int = 0
 
   @SerializedName("text")
