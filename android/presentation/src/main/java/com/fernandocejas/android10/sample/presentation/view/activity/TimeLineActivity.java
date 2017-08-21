@@ -1,6 +1,7 @@
 package com.fernandocejas.android10.sample.presentation.view.activity;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
@@ -38,9 +39,11 @@ public class TimeLineActivity extends BaseActivity implements HasComponent<UseCa
 
   private UseCaseComponent usecaseComponent;
   protected PopupWindow popupWin;
+  protected Boolean re_login = false;
   @Bind(R.id.btn_PicRegister) FloatingActionButton btn_PicRegist;
   @Bind(R.id.btn_StartChat) FloatingActionButton btn_StartChat;
   @Bind(R.id.bac_dim_layout) RelativeLayout backDimLayout;
+  @Bind(R.id.btn_LogOut) FloatingActionButton bt_LogOut;
 
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -49,9 +52,16 @@ public class TimeLineActivity extends BaseActivity implements HasComponent<UseCa
 
     // Generate Object Tree
     this.initializeInjector();
-    if (savedInstanceState == null) {
+    SharedPreferences prefer = getSharedPreferences("login", Context.MODE_PRIVATE);
+    //SharedPreferences.Editor editor = prefer.edit();
+    Boolean re_login = prefer.getBoolean("re_login", false);
+    if (savedInstanceState == null || re_login) {
       addFragment(R.id.fragmentContainer, new TweetCardFragment());
+      SharedPreferences.Editor editor = prefer.edit();
+      editor.putBoolean("re_login", false);
+      editor.apply();
     }
+
   }
 
   @OnClick(R.id.btn_PicRegister) void clickPicRegister() {
@@ -101,6 +111,22 @@ public class TimeLineActivity extends BaseActivity implements HasComponent<UseCa
   void clickStartChat() {
     Intent intent = new Intent(this.getApplicationContext(), ChatBotActivity.class);
     startActivity(intent);
+  }
+
+  @OnClick(R.id.btn_LogOut)
+  void clickLogOut() {
+    Intent intent = new Intent(this.getApplicationContext(), TutorialActivity.class);
+    startActivity(intent);
+    Fragment fragment = new TweetCardFragment();
+    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+    transaction.replace(R.id.fragmentContainer, fragment);
+    transaction.addToBackStack(null);
+    transaction.remove(fragment);
+    SharedPreferences prefer = getSharedPreferences("login", Context.MODE_PRIVATE);
+    SharedPreferences.Editor editor = prefer.edit();
+    editor.putBoolean("re_login", true);
+    editor.apply();
+    //SharedPreferences.Editor editor = prefer.edit();
   }
 
   @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
