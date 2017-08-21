@@ -115,8 +115,6 @@ public class TimeLineActivity extends BaseActivity implements HasComponent<UseCa
 
   @OnClick(R.id.btn_LogOut)
   void clickLogOut() {
-    Intent intent = new Intent(this.getApplicationContext(), TutorialActivity.class);
-    startActivity(intent);
     Fragment fragment = new TweetCardFragment();
     FragmentTransaction transaction = getFragmentManager().beginTransaction();
     transaction.replace(R.id.fragmentContainer, fragment);
@@ -126,6 +124,10 @@ public class TimeLineActivity extends BaseActivity implements HasComponent<UseCa
     SharedPreferences.Editor editor = prefer.edit();
     editor.putBoolean("re_login", true);
     editor.apply();
+
+    Intent intent = new Intent(this.getApplicationContext(), TutorialActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    startActivity(intent);
     //SharedPreferences.Editor editor = prefer.edit();
   }
 
