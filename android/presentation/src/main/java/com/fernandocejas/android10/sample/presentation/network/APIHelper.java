@@ -49,7 +49,7 @@ public class APIHelper extends APIHelperBase {
   //アクセストークン取得APIの呼び出し
   public static void getApiResponce(String utt, Context context) {
     final String APIKEY =
-        "33564d64434f423342786a474970644f785434706c4652344441477373415955462e7554326c61594c5332";
+        "";
     final Context app_context = context;
     SharedPreferences twitter = context.getSharedPreferences("twitter", Context.MODE_PRIVATE);
     String userName = twitter.getString("user_name", "me");
