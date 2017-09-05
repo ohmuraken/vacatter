@@ -22,8 +22,7 @@ import javax.inject.Singleton
 @Singleton
 class RetroApi @Inject constructor() {
 
-  val API_BASE_URL: String = "http://mk-azureserver.japaneast.cloudapp.azure.com:5000/vacatter/api/v1.0/"
-//  val API_BASE_URL: String = "http://mk-azureserver.japaneast.cloudapp.azure.com:5001/vacatter/demo/api/v1/"
+  val API_BASE_URL: String = "YOUR_API_SERVER/vacatter/api/v1.0/"
   val service: RestApiService
 
   init {

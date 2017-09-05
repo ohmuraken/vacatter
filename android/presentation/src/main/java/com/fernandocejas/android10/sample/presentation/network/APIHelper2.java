@@ -20,7 +20,7 @@ public class APIHelper2 extends APIHelperBase {
   /**
    * APIリクエストの送信先ベースURL
    */
-  private static final String API_BASE_URL = "http://mk-azureserver.japaneast.cloudapp.azure.com:5000/vacatter/api/v1.0/";
+  private static final String API_BASE_URL = "YOUR_API_SERVER/vacatter/api/v1.0/";
   private static final APIHelper2 sharedInstance = new APIHelper2();
 
   private APIService2 mAPI;
