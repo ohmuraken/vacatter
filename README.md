@@ -16,5 +16,5 @@
 
 
 ## 発表動画
+- **↓画像をクリックするとYouTubeの(3分ほどの)発表動画に飛びます.**
 - [![発表](https://gyazo.com/d8145241d19dec130844c7c225836def.png)](https://youtu.be/1cfKaH7gLkY?t=4742)
-- ↑画像をクリックするとYouTubeの(3分ほどの)発表動画に飛びます.
