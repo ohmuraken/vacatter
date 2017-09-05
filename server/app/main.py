@@ -3,14 +3,14 @@ import requests
 import tweepy
 import sqlite3
 import json
-import pandas as pd
-from flask import Flask, jsonify, abort, redirect
-from flask import g, request, Response, flash,  url_for
-from werkzeug.utils import secure_filename
-from flask import send_from_directory
-import numpy as np
 import cv2
 import urllib
+import pandas as pd
+import numpy as np
+from flask import Flask, jsonify, abort, redirect
+from flask import g, request, Response, flash, url_for
+from flask import send_from_directory
+from werkzeug.utils import secure_filename
 
 
 UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'uploads/')
@@ -18,15 +18,15 @@ FACE_UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.realpath(__file__)), '
 FACE_CHANGE_FOLDER = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'face_change/')
 FACE_CASCADE_DATA = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'data/haarcascade_frontalface_default.xml')
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
-
-consumer_key = "UZ07BQX9FRvXK6f0pkRPkQr0D"
-consumer_secret = "Dw7Dl7w0y0Je5YO07DwjukTliQMazE0sxKfZUnc5PHXovoZjXy"
-access_token = "893758559548080128-4OsFtaNZAZ9UeXqctWeNpC4uuK9nrgL"
-access_token_secret = "o8lS3n0D0qNJp8ij4ky4uA2AuRW3gKenhaz2zLjoGjF8Q"
-
-app = Flask(__name__)
 dir_path = os.path.abspath(os.path.dirname(__file__))
 DATABASE = os.path.join(dir_path, 'database.sqlite3')
+consumer_key = "YOUR_CONSUMER_KEY"
+consumer_secret = "YOUR_CONSUMER_SECRET"
+access_token = "YOUR_ACCESS_TOKEN"
+access_token_secret = "YOUR_ACCESS_TOKEN_SECRET"
+
+
+app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['FACE_UPLOAD_FOLDER'] = FACE_UPLOAD_FOLDER
 app.config['FACE_CHANGE_FOLDER'] = FACE_CHANGE_FOLDER
@@ -51,44 +51,34 @@ def get_db():
     return db
 
 
-# def url_to_image(url):
-#     f = io.BytesIO(urllib.request.urlopen(url).read())
-#     img = Image.open(f)
-#     return img
 def url_to_image(url):
     resp = urllib.request.urlopen(url)
     image = np.asarray(bytearray(resp.read()), dtype="uint8")
     image = cv2.imdecode(image, cv2.IMREAD_COLOR)
     return image
 
+
 def make_face_change(user_id, media_urls, face_url, face_cascade):
-    print("=============")
     face_change_urls = []
-    print("face_url: {}".format(face_url))
     face_path = os.path.join(app.config["FACE_UPLOAD_FOLDER"], face_url.rsplit("/")[-1])
     face_img = cv2.imread(face_path)
-    print("try to get face")
     for media_url in media_urls:
         if media_url != "none":
             base_img = url_to_image(media_url)
             base_img_gray = cv2.cvtColor(base_img, cv2.COLOR_BGR2GRAY)
             base_faces = face_cascade.detectMultiScale(base_img_gray, 1.3, 5)
-            print("media_url: {}".format(media_url))
-            print("base_face size: {}".format(len(base_faces)))
             if len(base_faces): # 顔が検出できた
                 for (x, y, w, h) in base_faces:
                     # 顔交換
                     base_img[y:y+h, x:x+w] = cv2.resize(face_img, (h, w))
                     # 保存
                     filename = str(user_id) + "_" + media_url.rsplit("/", 1)[-1]
-                    # file.save(os.path.join(app.config['FACE_CHANGE_FOLDER'], filename))
                     cv2.imwrite(os.path.join(app.config['FACE_CHANGE_FOLDER'], filename), base_img)
                     face_change_url = os.path.join("http://", request.host, "face_change", filename)
                     face_change_urls.append(face_change_url)
                 return face_change_urls
             else: # 顔が検出できない
                 face_change_urls.append("none")
-                # face_change_urls.append(media_url) # こっちでもいいかも
         else:
             face_change_urls.append("none")
     return face_change_urls
@@ -104,11 +94,9 @@ def remake_json(tweet, face_url):
         media_count = 0
         media_urls = ["none"] * 4
 
-    # いいねのフラグ
     if tweet._json["favorited"]: favorited_flag = 1
     else: favorited_flag = 0
 
-    # リツイートのフラグ
     if tweet._json["retweeted"]: retweeted_flag = 1
     else: retweeted_flag = 0
 
@@ -128,17 +116,10 @@ def remake_json(tweet, face_url):
     face_change_count = 0
 
     if media_urls.count("none") != 4:
-        print("check face")
         face_cascade =  cv2.CascadeClassifier(app.config['FACE_CASCADE_DATA'])
-        print(type(face_cascade))
         face_change_urls = make_face_change(tweet._json["user"]["id"], media_urls, face_url, face_cascade) # TODO
     else:
-        print("NO check face")
         face_change_urls = ["none", "none", "none", "none"]
-
-
-    print("media_urls: {}".format(media_urls))
-    print("face_change_urls: {}".format(face_change_urls))
 
     remaked_json = {
         "tweet_id": tweet._json["id"],
@@ -167,12 +148,6 @@ def authorize_token():
     access_token = request.form["access_token"]
     access_token_secret = request.form["access_token_secret"]
     user_id = int(request.form["user_id"])
-    print("====== type(request.form['user_id'])".format(type(request.form["user_id"])))
-
-    print("======= user_id: {} ======".format(user_id))
-    print("======= access_token: {} ======".format(access_token))
-    print("======= access_token_secret: {} =======".format(access_token_secret))
-
     conn = get_db()
     c = conn.cursor()
     sql = "SELECT * FROM users WHERE user_id={}".format(user_id)
@@ -195,34 +170,20 @@ def authorize_token():
 def user_timeline():
     user_id = int(request.args.get("user_id"))
     count = int(request.args.get("count"))
-    print("=== user_id: {}".format(user_id))
-    print("=== type(user_id): {}".format(type(user_id)))
-    print("=== count: {}".format(count))
-    print("=== type(count): {}".format(type(count)))
     conn = get_db()
     c = conn.cursor()
     sql = "SELECT * FROM users WHERE user_id=?"
     c.execute(sql, (user_id,))
     result = c.fetchall()
-    print("=== result: {}".format(result))
     if len(result):
         user_id = result[0][0]
         access_token = result[0][1]
         access_token_secret = result[0][2]
         face_url = result[0][3]
-        print(" ~~~~~~~ RETRY ~~~~~~~~~")
-        print("=== user_id: {}".format(user_id))
-        print("-- type(user_id): {}".format(type(user_id)))
-        print("=== access_token: {}".format(access_token))
-        print("-- type(access_token): {}".format(type(access_token)))
-        print("=== access_token_secret: {}".format(access_token_secret))
-        print("-- type(access_token_secret): {}".format(type(access_token_secret)))
-        print("=== face_url: {}".format(face_url))
         conn.commit()
         conn.close()
         api = twitter_authorize(consumer_key, consumer_secret, access_token, access_token_secret)
         tweets = api.home_timeline(count=count)
-        # res = [remake_json(tweet, face_url) for tweet in tweets if "extended_entities" in tweet._json.keys()]
         res = []
         for tweet in tweets:
             if "extended_entities" in tweet._json.keys():
@@ -238,20 +199,13 @@ def user_timeline():
 def upload_face():
     if request.method == 'POST':
         user_id = request.form["user_id"]
-        print("======= user_id: {} ======".format(user_id))
-        # check if the post request has the file part
         if 'image' not in request.files:
             return redirect(request.url)
-        # print("======= request.values: {} =======".format()
         file = request.files['image']
-        print("======= request.files['image']: {} =======".format(file))
-        print("======= request.files['image'].filename: {} =======".format(file.filename))
-        print("======= type(request.files['image']: {} =======".format(type(file)))
         if file.filename == '':
             return 'No selected file'
         if file and allowed_file(file.filename):
             filename = user_id + "_" + secure_filename(file.filename)
-            print("======= filename: {} ======".format(filename))
             face_path = os.path.join(app.config['FACE_UPLOAD_FOLDER'], filename)
             face_url = os.path.join("http://", request.host, "your_face", filename)
             face_img = cv2.imdecode(np.fromstring(request.files["image"].stream.read(), np.uint8), cv2.IMREAD_COLOR)
@@ -259,13 +213,11 @@ def upload_face():
             face_cascade =  cv2.CascadeClassifier(app.config['FACE_CASCADE_DATA'])
             base_faces = face_cascade.detectMultiScale(face_img_gray, 1.3, 5)
             if len(base_faces):
-                print("---- check face!")
                 x, y, w, h = base_faces[0]
                 face_img = face_img[y:y+h, x:x+w]
                 cv2.imwrite(face_path, face_img)
             else:
                 cv2.imwrite(face_path, face_img)
-            print("======= face_url: {} ======".format(face_url))
             conn = get_db()
             c = conn.cursor()
             sql = "UPDATE users SET face_url=? WHERE user_id=?"
@@ -284,6 +236,7 @@ def upload_face():
             <input type=submit value=Upload>
         </form>
     '''
+
 
 @app.route('/vacatter/api/v1.0/face_url', methods=['GET'])
 def face_url():
@@ -304,17 +257,12 @@ def face_url():
         conn.close()
         return "no face"
 
+
 @app.route('/vacatter/api/v1.0/favorited', methods=['POST'])
 def favorited():
     user_id = int(request.json["user_id"]) # int
     tweet_id = int(request.json["tweet_id"]) # int
     favorited = int(request.json["favorited"]) # bool
-    print("--- user_id: {}".format(user_id))
-    print("--- type(user_id): {}".format(type(user_id)))
-    print("--- tweet_id: {}".format(tweet_id))
-    print("--- type(tweet_id): {}".format(type(tweet_id)))
-    print("--- favorited: {}".format(favorited))
-    print("--- type(favorited): {}".format(type(favorited)))
     conn = get_db()
     c = conn.cursor()
     sql = "SELECT * FROM users WHERE user_id=?"
@@ -332,8 +280,8 @@ def favorited():
         res = api.destroy_favorite(tweet_id)
     else:
         res = "Why else..."
-    print("---- create_favorite res: {}".format(res))
     return jsonify({"status": "ok"})
+
 
 @app.route('/your_face/<filename>', methods=['GET'])
 def uploaded_face(filename):
